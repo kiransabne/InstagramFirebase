@@ -12,8 +12,9 @@ class ViewController: UIViewController {
 
     //create button programmatically
     let plusPhotoButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "plus_photo"), for: .normal)
+        //button.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         button.translatesAutoresizingMaskIntoConstraints = false //use this for constraints programatically
         return button
     }()
@@ -23,7 +24,7 @@ class ViewController: UIViewController {
         
         view.addSubview(plusPhotoButton)
         
-        //anchors for auto-layout
+        //anchors for auto-layout programmaticallyb
         plusPhotoButton.heightAnchor.constraint(equalToConstant: 140).isActive = true //required for autolayout
         
         plusPhotoButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
