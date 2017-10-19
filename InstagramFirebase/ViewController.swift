@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     //create button programmatically
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "plus_photo"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
         //button.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         button.translatesAutoresizingMaskIntoConstraints = false //use this for constraints programatically
         return button
@@ -52,8 +52,22 @@ class ViewController: UIViewController {
         tf.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.2132707634) //background color using color literal
         tf.borderStyle = .roundedRect //border for text field
         tf.font = UIFont(name: "Avenir", size: 14)
+        
         return tf
     }()
+    
+    
+    //sign up button
+    let signUpButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Sign Up", for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        button.layer.cornerRadius = 5
+        button.titleLabel?.font =  UIFont(name: "Avenir", size: 14)
+        button.setTitleColor(.white, for: .normal)
+        return button
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +100,7 @@ class ViewController: UIViewController {
     fileprivate func setupInputFields() {
     
         
-        let stackView = UIStackView(arrangedSubviews: [emailTextField, usernameTextField, passwordTextField])
+        let stackView = UIStackView(arrangedSubviews: [emailTextField, usernameTextField, passwordTextField, signUpButton])
         
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
