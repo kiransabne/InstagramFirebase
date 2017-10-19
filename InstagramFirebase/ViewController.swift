@@ -61,7 +61,12 @@ class ViewController: UIViewController {
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+    
+        
+        button.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
+        
+        button.backgroundCoor = UIColor.rgb(149, 2014, 244)
+        
         button.layer.cornerRadius = 5
         button.titleLabel?.font =  UIFont(name: "Avenir", size: 14)
         button.setTitleColor(.white, for: .normal)
