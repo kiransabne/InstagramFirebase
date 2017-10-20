@@ -78,8 +78,12 @@ class ViewController: UIViewController {
     
     //method when signup button is pressed by user
     @objc func handleSignUp() {
-        let email = "dummy@gmail.com"
-        let password = "123123"
+        
+        //guard statement to grab user input
+        guard let email = emailTextField.text else { return }
+        guard let username = usernameTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
         
         
         //authenticate with Firebase
