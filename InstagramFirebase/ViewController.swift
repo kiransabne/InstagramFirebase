@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
 
@@ -77,7 +78,22 @@ class ViewController: UIViewController {
     
     //method when signup button is pressed by user
     @objc func handleSignUp() {
-        print(123)
+        let email = "dummy@gmail.com"
+        let password = "123123"
+        
+        
+        //authenticate with Firebase
+        Auth.auth().createUser(withEmail: email, password: password, completion: {
+            (user: User?, error: Error?) in
+            //check to see if there was an error
+            
+            if let err = error {
+                print("Failed to create user:", err)
+            }
+            
+            //if no error, we are successful
+            print("Successfully created user:", user?.uid ?? "")
+        })
         
     }
     
