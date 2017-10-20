@@ -27,8 +27,29 @@ class ViewController: UIViewController {
         tf.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.2132707634) //background color using color literal
         tf.borderStyle = .roundedRect //border for text field
         tf.font = UIFont(name: "Avenir", size: 14)
+        
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        
         return tf
     }()
+    
+    
+    @objc func handleTextInputChange() {
+        //change signup button to original color while editing use boolean value
+        let isFormValid =  emailTextField.text?.characters.count ?? 0 > 0 && usernameTextField.text?.characters.count ?? 0 > 0 && passwordTextField.text?.characters.count ?? 0 > 0
+        
+        //check
+        if isFormValid {
+            signUpButton.isEnabled = true
+            signUpButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        } else {
+            signUpButton.isEnabled = false //turn sign up button dark blue when user enters all fields
+            signUpButton.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        }
+        
+        
+    }
+    
     
     
     //create text field programatically
@@ -39,8 +60,15 @@ class ViewController: UIViewController {
         tf.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.2132707634) //background color using color literal
         tf.borderStyle = .roundedRect //border for text field
         tf.font = UIFont(name: "Avenir", size: 14)
+        
+        //listener action
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        
         return tf
     }()
+    
+    
+    
     
     
     //create text field programatically
@@ -52,6 +80,10 @@ class ViewController: UIViewController {
         tf.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.2132707634) //background color using color literal
         tf.borderStyle = .roundedRect //border for text field
         tf.font = UIFont(name: "Avenir", size: 14)
+        
+        //listener action
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        
         
         return tf
     }()
@@ -72,6 +104,7 @@ class ViewController: UIViewController {
         //action when Sign up button is pressed
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         
+        button.isEnabled = false //disable by default
         
         return button
     }()
@@ -80,9 +113,11 @@ class ViewController: UIViewController {
     @objc func handleSignUp() {
         
         //guard statement to grab user input
-        guard let email = emailTextField.text else { return }
-        guard let username = usernameTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
+        //verify an empty string
+        guard let email = emailTextField.text, email.characters.count > 0 else { return }
+        
+        guard let username = usernameTextField.text, username.characters.count > 0 else { return }
+        guard let password = passwordTextField.text, password.characters.count > 0 else { return }
         
         
         
