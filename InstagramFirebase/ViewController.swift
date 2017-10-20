@@ -67,8 +67,22 @@ class ViewController: UIViewController {
         button.layer.cornerRadius = 5
         button.titleLabel?.font =  UIFont(name: "Avenir", size: 14)
         button.setTitleColor(.white, for: .normal)
+        
+        //action when Sign up button is pressed
+        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        
+        
         return button
     }()
+    
+    //method when signup button is pressed by user
+    @objc func handleSignUp() {
+        print(123)
+        
+    }
+    
+    
+    
     
     
     override func viewDidLoad() {
