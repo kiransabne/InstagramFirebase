@@ -132,7 +132,25 @@ class ViewController: UIViewController {
             
             //if no error, we are successful
             print("Successfully created user:", user?.uid ?? "")
+            
+            //save user into Firebase database
+            guard let uid = user?.uid else { return } //use guard to unwrap
+            
+            //object
+            let values = [uid: 1] //dictionary object
+            
+            Database.database().reference().child("users").setValue(values, withCompletionBlock: { (err, ref) in
+                
+                //check potential error
+                if let err = err {
+                    print("Failed to save user into db:", err)
+                    return
+                }
+                //if successful
+                print("Successfully saved user info to db")
+            })
         })
+        
         
     }
     
