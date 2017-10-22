@@ -136,8 +136,9 @@ class ViewController: UIViewController {
             //save user into Firebase database
             guard let uid = user?.uid else { return } //use guard to unwrap
             
-            //object
-            let values = [uid: 1] //dictionary object
+            //object dictionaries
+            let usernameValues = ["username": username]
+            let values = [uid: usernameValues] //dictionary object
             
             Database.database().reference().child("users").setValue(values, withCompletionBlock: { (err, ref) in
                 
