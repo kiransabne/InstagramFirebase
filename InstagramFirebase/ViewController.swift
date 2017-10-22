@@ -46,6 +46,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
         //style button
+        plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2 //rounded
+        plusPhotoButton.layer.masksToBounds = true //required to show rounded button
+        plusPhotoButton.layer.borderColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        plusPhotoButton.layer.borderWidth = 3
         
         
         dismiss(animated: true, completion: nil) //dismiss the picker controller
