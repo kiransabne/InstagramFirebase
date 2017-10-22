@@ -140,7 +140,10 @@ class ViewController: UIViewController {
             let usernameValues = ["username": username]
             let values = [uid: usernameValues] //dictionary object
             
-            Database.database().reference().child("users").setValue(values, withCompletionBlock: { (err, ref) in
+            //set value call to append new user to existing one, so it doesn't delete the previous user
+            Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (err, ref)
+                
+                in
                 
                 //check potential error
                 if let err = err {
@@ -151,7 +154,6 @@ class ViewController: UIViewController {
                 print("Successfully saved user info to db")
             })
         })
-        
         
     }
     
