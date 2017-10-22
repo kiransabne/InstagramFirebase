@@ -6,4 +6,16 @@
 //  Copyright © 2017 Christian Deciga. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class MainTabBarController: UITabBarController {
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    
+}
+
