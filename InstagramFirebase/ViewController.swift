@@ -16,8 +16,17 @@ class ViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
         
+        //action for button user to add photo profile
+        button.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
+        
         return button
     }()
+    
+    //allows user to add profile photo pressing on button
+    @objc func handlePlusPhoto() {
+       print(123)
+    }
+    
     
     //create text field programatically
     let emailTextField: UITextField = {
