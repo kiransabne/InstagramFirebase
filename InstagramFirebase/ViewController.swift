@@ -24,7 +24,10 @@ class ViewController: UIViewController {
     
     //allows user to add profile photo pressing on button
     @objc func handlePlusPhoto() {
-       print(123)
+       
+        let imagePickerController = UIImagePickerController()
+        present(imagePickerController, animated: true, completion: nil)
+        
     }
     
     
