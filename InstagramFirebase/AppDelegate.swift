@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //programmatically build window
         window = UIWindow()
-        window?.rootViewController = UITabBarController()
+        window?.rootViewController = MainTabBarController()
         
         
         
