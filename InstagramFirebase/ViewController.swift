@@ -48,7 +48,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //style button
         plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2 //rounded
         plusPhotoButton.layer.masksToBounds = true //required to show rounded button
-        plusPhotoButton.layer.borderColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        plusPhotoButton.layer.borderColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         plusPhotoButton.layer.borderWidth = 3
         
         
@@ -78,10 +78,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //check
         if isFormValid {
             signUpButton.isEnabled = true
-            signUpButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+            signUpButton.backgroundColor = #colorLiteral(red: 0.8895385409, green: 0.1977875752, blue: 0.1538820841, alpha: 1)
         } else {
             signUpButton.isEnabled = false //turn sign up button dark blue when user enters all fields
-            signUpButton.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+            signUpButton.backgroundColor = #colorLiteral(red: 0.6538158846, green: 0.08525913242, blue: 0.3793562864, alpha: 1)
         }
         
         
@@ -131,7 +131,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
     
-        button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
+        button.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
        
         
         button.layer.cornerRadius = 5
@@ -170,26 +170,45 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             //if no error, we are successful
             print("Successfully created user:", user?.uid ?? "")
             
-            //save user into Firebase database
-            guard let uid = user?.uid else { return } //use guard to unwrap
+            //access to button image
+            guard let image = self.plusPhotoButton.imageView?.image else { return }
             
-            //object dictionaries
-            let usernameValues = ["username": username]
-            let values = [uid: usernameValues] //dictionary object
+            guard let uploadData = UIImageJPEGRepresentation(image, 0.3) else { return }
             
-            //set value call to append new user to existing one, so it doesn't delete the previous user
-            Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (err, ref)
-                
+            //upload image
+            Storage.storage().reference().child("profile_image").putData(uploadData, metadata: nil, completion: { (metadata, err)
                 in
                 
-                //check potential error
                 if let err = err {
-                    print("Failed to save user into db:", err)
+                    print("Failed to upload profile image:", err)
                     return
                 }
-                //if successful
-                print("Successfully saved user info to db")
+                guard let profileImageUrl = metadata?.downloadURL()?.absoluteString else { return }
+                
+                print("Successfully uploaded profile image", profileImageUrl)
+                
             })
+            
+            //save user into Firebase database
+            //guard let uid = user?.uid else { return } //use guard to unwrap
+        
+            //object dictionaries
+            //let usernameValues = ["username": username]
+            //let values = [uid: usernameValues] //dictionary object
+            
+            //set value call to append new user to existing one, so it doesn't delete the previous user
+            //Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (err, ref)
+                
+                //in
+                
+                //check potential error
+                //if let err = err {
+                    //print("Failed to save user into db:", err)
+                    //return
+                //}
+                //if successful
+                //print("Successfully saved user info to db")
+            //})
         })
         
     }
