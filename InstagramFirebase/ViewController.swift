@@ -28,8 +28,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //access camera
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true, completion: nil)
         
+    }
+    
+    //check what image user chose to display in button image
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            
+            plusPhotoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+            
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+             plusPhotoButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+            
+        }
+        
+        //style button
+        
+        
+        dismiss(animated: true, completion: nil) //dismiss the picker controller
     }
     
     
