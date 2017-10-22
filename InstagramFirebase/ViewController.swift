@@ -175,8 +175,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             guard let uploadData = UIImageJPEGRepresentation(image, 0.3) else { return }
             
+            let filename = NSUUID().uuidString
+            
+            
             //upload image
-            Storage.storage().reference().child("profile_image").putData(uploadData, metadata: nil, completion: { (metadata, err)
+            Storage.storage().reference().child("profile_images").child(filename).putData(uploadData, metadata: nil, completion: { (metadata, err)
                 in
                 
                 if let err = err {
@@ -187,28 +190,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 
                 print("Successfully uploaded profile image", profileImageUrl)
                 
-            })
-            
-            //save user into Firebase database
-            //guard let uid = user?.uid else { return } //use guard to unwrap
-        
-            //object dictionaries
-            //let usernameValues = ["username": username]
-            //let values = [uid: usernameValues] //dictionary object
-            
-            //set value call to append new user to existing one, so it doesn't delete the previous user
-            //Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (err, ref)
                 
-                //in
+                //save user into Firebase database
+                guard let uid = user?.uid else { return } //use guard to unwrap
+                
+                //object dictionaries
+                let dictionaryValues = ["username": username, "profileImageUrl": profileImageUrl]
+                let values = [uid: dictionaryValues] //dictionary object
+                
+                //set value call to append new user to existing one, so it doesn't delete the previous user
+                Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (err, ref)
+                
+                in
                 
                 //check potential error
-                //if let err = err {
-                    //print("Failed to save user into db:", err)
-                    //return
-                //}
+                if let err = err {
+                print("Failed to save user into db:", err)
+                return
+                }
                 //if successful
-                //print("Successfully saved user info to db")
-            //})
+                print("Successfully saved user info to db")
+                })
+                
+                
+            })
+            
+            
         })
         
     }
