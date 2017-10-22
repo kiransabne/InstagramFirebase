@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     //create button programmatically
     let plusPhotoButton: UIButton = {
@@ -25,7 +25,9 @@ class ViewController: UIViewController {
     //allows user to add profile photo pressing on button
     @objc func handlePlusPhoto() {
        
+        //access camera
         let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
         
     }
