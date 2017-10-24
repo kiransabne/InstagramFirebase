@@ -23,7 +23,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         fetchUser()
         
         //register collectionview with a header
-        collectionView?.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
+        collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
         
     }
     
@@ -33,7 +33,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         //specify header
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerId", for: indexPath)
        
-        header.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        
         
         return header
         
@@ -60,9 +60,11 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             //access snapshot
             guard let dictionary = snapshot.value as? [String: Any] else { return }
             
+            let profileImageUrl = dictionary["profileImageUrl"] as? String 
             let username = dictionary["username"] as? String
             self.navigationItem.title = username //set title of username
             
+            self.collectionView?.reloadData()
             
         }) { (err) in
             print("Failed to fetch user:", err)
@@ -73,7 +75,18 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
 }
 
-
+//model object
+struct User {
+    let username: String
+    let profileImageUrl: String
+    
+    //constructor to help set up properties
+    init(dictionary: [String: Any]) {
+        self.username = dictionary["username"] as? String ?? ""
+        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
+    }
+    
+}
 
 
 

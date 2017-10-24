@@ -106,7 +106,6 @@
 			children = (
 				8953447A1F97F6CC00EFAA9E /* ViewController.swift */,
 				895344921F9D4DE100EFAA9E /* MainTabBarController.swift */,
-				895344941F9D546900EFAA9E /* UserProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -115,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				895344971F9DF35000EFAA9E /* UserProfileHeader.swift */,
+				895344941F9D546900EFAA9E /* UserProfileController.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
