@@ -39,13 +39,14 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
     }
     
-    //specify header
+    //specify header in header method
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
         
         return CGSize(width: view.frame.width, height: 200) //header with height and width
     }
     
-    
+    var user: User?
     
     //set user name instead of Firebase id characters using fileprivate(can only access this func within this class
     fileprivate func fetchUser() {
@@ -53,6 +54,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
+        
+        //completion block
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             print(snapshot.value ?? "")
             
@@ -60,9 +63,13 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             //access snapshot
             guard let dictionary = snapshot.value as? [String: Any] else { return }
             
-            let profileImageUrl = dictionary["profileImageUrl"] as? String 
-            let username = dictionary["username"] as? String
-            self.navigationItem.title = username //set title of username
+            //let profileImageUrl = dictionary["profileImageUrl"] as? String
+            //let username = dictionary["username"] as? String
+            
+            
+            self.user = User(dictionary: dictionary) //constructed object from var user: User?
+            
+            self.navigationItem.title = self.user?.username //set title of username
             
             self.collectionView?.reloadData()
             
@@ -75,7 +82,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
 }
 
-//model object
+//model object using struct
 struct User {
     let username: String
     let profileImageUrl: String
