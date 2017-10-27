@@ -48,9 +48,6 @@ class UserProfileHeader: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
-        backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        
         //add to cell hierarchy with constraints
         addSubview(profileImageView)
         profileImageView.anchor(top: topAnchor, left: self.leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
@@ -59,12 +56,17 @@ class UserProfileHeader: UICollectionViewCell {
         profileImageView.layer.cornerRadius = 80 / 2 //width value by 2
         profileImageView.clipsToBounds = true
         
-        setUpBottomToolbar()
+        setupBottomToolbar()
     }
     
     //func for toolbar
     fileprivate func setupBottomToolbar() {
+        let stackView = UIStackView(arrangedSubviews: [gridButton, listButton, bookmarkButton]) //stackview
         
+        addSubview(stackView)
+        
+        //anchor to bottom of the header set constraints
+        stackView.anchor(top: nil, left: leftAnchor, bottom: self.bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
     }
     
     
