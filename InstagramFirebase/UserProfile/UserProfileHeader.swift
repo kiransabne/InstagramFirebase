@@ -38,6 +38,7 @@ class UserProfileHeader: UICollectionViewCell {
     let bookmarkButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
+        button.tintColor = UIColor(white: 0, alpha: 0.1)
         return button
     }()
     
@@ -48,8 +49,10 @@ class UserProfileHeader: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        //add to cell hierarchy with constraints
+        
         addSubview(profileImageView)
+        
+        //add to cell hierarchy with constraints
         profileImageView.anchor(top: topAnchor, left: self.leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
         
         //make block rounded view
@@ -62,6 +65,11 @@ class UserProfileHeader: UICollectionViewCell {
     //func for toolbar
     fileprivate func setupBottomToolbar() {
         let stackView = UIStackView(arrangedSubviews: [gridButton, listButton, bookmarkButton]) //stackview
+        
+        //configure stackview to desired position programatically
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        
         
         addSubview(stackView)
         
