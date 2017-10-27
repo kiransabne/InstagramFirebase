@@ -160,7 +160,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         //authenticate with Firebase
         Auth.auth().createUser(withEmail: email, password: password, completion: {
-            (user: User?, error: Error?) in
+            (user: FirebaseAuth.User?, error: Error?) in
             //check to see if there was an error
             
             if let err = error {

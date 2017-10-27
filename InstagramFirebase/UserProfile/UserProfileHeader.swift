@@ -35,56 +35,42 @@ class UserProfileHeader: UICollectionViewCell {
         profileImageView.layer.cornerRadius = 80 / 2 //width value by 2
         profileImageView.clipsToBounds = true
         
-        setupProfileImage() //method call
+            }
+    
+    //model object
+    var user: User? {
+        didSet {
+            setupProfileImage()
+            
+        }
     }
+    
     
     
     fileprivate func setupProfileImage() {
         
         //fetch username for Firebase users using guard let statement
+        guard let profileImageUrl = user?.profileImageUrl else { return }
         
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let url = URL(string: profileImageUrl) else { return }
         
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            print(snapshot.value ?? "")
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            //check for the error, then construct the image using data
+            if let err = err {
+                print("Failed to fetch profile image:", err)
+                return
+            }
             
-            //access snapshot
-            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            //perhaps check for response status of 200 (HTTP OK)
+            guard let data = data else { return }
             
-            guard let profileImageUrl = dictionary["profileImageUrl"] as? String else  { return }
+            let image = UIImage(data: data)
+           //need to get back onto the main UI thread
+            DispatchQueue.main.async {
+                self.profileImageView.image = image
+            }
             
-            guard let url = URL(string: profileImageUrl) else { return }
-            
-            //datatask completion block handler
-            URLSession.shared.dataTask(with: url) { (data, response, err)
-                in
-                //check the error, then construct the image using data
-                if let err = err {
-                    print("Failed to fetch profile image:", err)
-                    return
-                }
-                
-                //perhaps check for response status of 200 (HTTP OK)
-                
-                //handle image
-                guard let data = data else { return }
-                
-                let image = UIImage(data: data)
-                
-                //get back on main thread, need to get back on main UI thread to prevent crash
-                DispatchQueue.main.async {
-                    self.profileImageView.image = image
-                }
-    
-                
-                
-                }.resume()
-            
-                }) { (err) in
-                print("Failed to fetch user:", err)
-           
-        }
-        
+        }.resume()
     }
     
     required init?(coder aDecoder: NSCoder) {
