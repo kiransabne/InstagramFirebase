@@ -31,6 +31,7 @@ class UserProfileHeader: UICollectionViewCell {
     let listButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "list"), for: .normal)
+        button.tintColor = UIColor(white: 0, alpha: 0.2)
         return button
     }()
     
@@ -38,7 +39,7 @@ class UserProfileHeader: UICollectionViewCell {
     let bookmarkButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
-        button.tintColor = UIColor(white: 0, alpha: 0.1)
+        button.tintColor = UIColor(white: 0, alpha: 0.2)
         return button
     }()
     
