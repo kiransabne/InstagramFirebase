@@ -27,6 +27,21 @@ class UserProfileHeader: UICollectionViewCell {
         
     }()
     
+    //grid list button
+    let listButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "list"), for: .normal)
+        return button
+    }()
+    
+    //bookmark button
+    let bookmarkButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
+        return button
+    }()
+    
+    
     
     
     //UIView objects subclass
