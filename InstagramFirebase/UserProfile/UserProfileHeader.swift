@@ -59,7 +59,15 @@ class UserProfileHeader: UICollectionViewCell {
         profileImageView.layer.cornerRadius = 80 / 2 //width value by 2
         profileImageView.clipsToBounds = true
         
-            }
+        setUpBottomToolbar()
+    }
+    
+    //func for toolbar
+    fileprivate func setupBottomToolbar() {
+        
+    }
+    
+    
     
     //model object
     var user: User? {
