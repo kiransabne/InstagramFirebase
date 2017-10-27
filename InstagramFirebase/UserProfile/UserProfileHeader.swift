@@ -19,6 +19,15 @@ class UserProfileHeader: UICollectionViewCell {
     }() //execute the closure
     
     
+    //create grid button programmatically
+    let gridButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "grid"), for: .normal)
+        return button
+        
+    }()
+    
+    
     
     //UIView objects subclass
     override init(frame: CGRect) {
