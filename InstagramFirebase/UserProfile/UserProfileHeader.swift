@@ -14,7 +14,6 @@ class UserProfileHeader: UICollectionViewCell {
     //adding userprofile view programmatically
     let profileImageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
         return iv
     }() //execute the closure
     
@@ -43,7 +42,13 @@ class UserProfileHeader: UICollectionViewCell {
         return button
     }()
     
-    
+    //username label
+    let usernameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "username"
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        return label
+    }()
     
     
     //UIView objects subclass
@@ -61,6 +66,10 @@ class UserProfileHeader: UICollectionViewCell {
         profileImageView.clipsToBounds = true
         
         setupBottomToolbar()
+    
+        //anchor usernameLabel with constraints
+        addSubview(usernameLabel)
+        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: gridButton.topAnchor, right: rightAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
     }
     
     //func for toolbar
