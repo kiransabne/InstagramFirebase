@@ -115,6 +115,11 @@ class UserProfileHeader: UICollectionViewCell {
         //stackview for labels
         let stackView = UIStackView(arrangedSubviews: [postsLabel, followersLabel, followingLabel])
         
+        stackView.distribution = .fillEqually
+        addSubview(stackView) //add to subview
+        
+        //anchor constraints
+        stackView.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 50)
         
     }
     
