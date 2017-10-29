@@ -159,6 +159,14 @@ class UserProfileHeader: UICollectionViewCell {
     
     //func for toolbar
     fileprivate func setupBottomToolbar() {
+        
+        //create two lines hard coded
+        let topDividerView = UIView()
+        topDividerView.backgroundColor = UIColor.lightGray
+        
+        let bottomDividerView = UIView()
+        bottomDividerView.backgroundColor = UIColor.lightGray
+        
         let stackView = UIStackView(arrangedSubviews: [gridButton, listButton, bookmarkButton]) //stackview
         
         //configure stackview to desired position programatically
@@ -167,9 +175,18 @@ class UserProfileHeader: UICollectionViewCell {
         
         
         addSubview(stackView)
+        addSubview(topDividerView)
+        addSubview(bottomDividerView)
+        
         
         //anchor to bottom of the header set constraints
         stackView.anchor(top: nil, left: leftAnchor, bottom: self.bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        
+        //place on top of stackview line to seperate toolbar top line
+        topDividerView.anchor(top: stackView.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
+    
+        //bottom line
+        bottomDividerView.anchor(top: stackView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
     }
     
     
