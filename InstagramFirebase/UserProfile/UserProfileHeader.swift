@@ -65,6 +65,7 @@ class UserProfileHeader: UICollectionViewCell {
     let postsLabel: UILabel = {
         let label = UILabel()
         label.text = "11\nposts"
+        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
@@ -73,6 +74,7 @@ class UserProfileHeader: UICollectionViewCell {
     let followersLabel: UILabel = {
         let label = UILabel()
         label.text = "11\nposts"
+        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
@@ -80,6 +82,7 @@ class UserProfileHeader: UICollectionViewCell {
     let followingLabel: UILabel = {
         let label = UILabel()
         label.text = "11\nposts"
+        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
