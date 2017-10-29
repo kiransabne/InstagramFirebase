@@ -11,6 +11,16 @@ import Firebase
 
 class UserProfileHeader: UICollectionViewCell {
     
+    
+    //model object
+    var user: User? {
+        didSet {
+            setupProfileImage()
+            
+            usernameLabel.text = user?.username
+        }
+    }
+    
     //adding userprofile view programmatically
     let profileImageView: UIImageView = {
         let iv = UIImageView()
@@ -51,6 +61,32 @@ class UserProfileHeader: UICollectionViewCell {
     }()
     
     
+    //labels programatically set
+    let postsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "11\nposts"
+        label.textAlignment = .center
+        return label
+    }()
+    
+    
+    let followersLabel: UILabel = {
+        let label = UILabel()
+        label.text = "11\nposts"
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let followingLabel: UILabel = {
+        let label = UILabel()
+        label.text = "11\nposts"
+        label.textAlignment = .center
+        return label
+    }()
+    
+    
+    
+    
     //UIView objects subclass
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,7 +106,18 @@ class UserProfileHeader: UICollectionViewCell {
         //anchor usernameLabel with constraints
         addSubview(usernameLabel)
         usernameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: gridButton.topAnchor, right: rightAnchor, paddingTop: 12, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 0)
+        
+        
+        setupUserStatsView()
     }
+    
+    fileprivate func setupUserStatsView() {
+        //stackview for labels
+        let stackView = UIStackView(arrangedSubviews: [postsLabel, followersLabel, followingLabel])
+        
+        
+    }
+    
     
     //func for toolbar
     fileprivate func setupBottomToolbar() {
@@ -85,16 +132,6 @@ class UserProfileHeader: UICollectionViewCell {
         
         //anchor to bottom of the header set constraints
         stackView.anchor(top: nil, left: leftAnchor, bottom: self.bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
-    }
-    
-    
-    
-    //model object
-    var user: User? {
-        didSet {
-            setupProfileImage()
-            
-        }
     }
     
     
