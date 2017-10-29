@@ -87,6 +87,14 @@ class UserProfileHeader: UICollectionViewCell {
         return label
     }()
     
+    //edit profile button
+    let editProfileButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Edit Profile", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        return button
+    }()
     
     
     
@@ -112,6 +120,9 @@ class UserProfileHeader: UICollectionViewCell {
         
         
         setupUserStatsView()
+        addSubview(editProfileButton)
+        editProfileButton.anchor(top: postsLabel.bottomAnchor, left: postsLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 34)
+        
     }
     
     fileprivate func setupUserStatsView() {
