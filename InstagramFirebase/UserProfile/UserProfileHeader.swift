@@ -64,7 +64,13 @@ class UserProfileHeader: UICollectionViewCell {
     //labels programatically set
     let postsLabel: UILabel = {
         let label = UILabel()
-        label.text = "11\nposts"
+        
+        let attributedText = NSMutableAttributedString(string:"11\n", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
+        
+        attributedText.append(NSAttributedString(string: "posts", attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
+       
+        label.attributedText = attributedText
+        
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -93,6 +99,8 @@ class UserProfileHeader: UICollectionViewCell {
         button.setTitle("Edit Profile", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.borderWidth = 1
         return button
     }()
     
