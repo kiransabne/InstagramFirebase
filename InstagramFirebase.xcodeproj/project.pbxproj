@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		34AB20A7D2CC383920590336 /* Pods_InstagramFirebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81FDAC59B9A08AF0BCDCD771 /* Pods_InstagramFirebase.framework */; };
+		89086B7C1FA70B890021F695 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89086B7B1FA70B890021F695 /* LoginController.swift */; };
 		895344791F97F6CC00EFAA9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895344781F97F6CC00EFAA9E /* AppDelegate.swift */; };
 		8953447B1F97F6CC00EFAA9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953447A1F97F6CC00EFAA9E /* ViewController.swift */; };
 		8953447E1F97F6CC00EFAA9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8953447C1F97F6CC00EFAA9E /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		81FDAC59B9A08AF0BCDCD771 /* Pods_InstagramFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		89086B7B1FA70B890021F695 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		895344751F97F6CC00EFAA9E /* InstagramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		895344781F97F6CC00EFAA9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8953447A1F97F6CC00EFAA9E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 		89086B7A1FA70B110021F695 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				89086B7B1FA70B890021F695 /* LoginController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				895344981F9DF35000EFAA9E /* UserProfileHeader.swift in Sources */,
 				895344951F9D546900EFAA9E /* UserProfileController.swift in Sources */,
 				895344791F97F6CC00EFAA9E /* AppDelegate.swift in Sources */,
+				89086B7C1FA70B890021F695 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
