@@ -48,7 +48,24 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     //action when user presses logout
     @objc func handleLogOut() {
-        print("logging out")
+        //alert controller
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        //add actions to alert controller Log out
+        alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_ ) in
+            print("Perform log out")
+            
+        }))
+        
+        //cancel alert controller
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        
+        
+        //present the alert controller
+        present(alertController, animated: true, completion: nil)
+        
+        
     }
     
     //fill collectionview with cells
