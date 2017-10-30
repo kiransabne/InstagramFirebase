@@ -23,6 +23,9 @@ class LoginController: UIViewController {
     //func for add action handleShowSignUp
     @objc func handleShowSignUp() {
         //present registration controller
+        let signUpController = SignUpController()
+        print(navigationController)
+        navigationController?.pushViewController(signUpController, animated: true)
     }
     
     
