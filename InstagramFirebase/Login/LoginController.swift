@@ -14,9 +14,16 @@ class LoginController: UIViewController {
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Don't have an account? Sign Up.", for: .normal)
+        //add action when pressed
+        button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         return button
         
     }()
+    
+    //func for add action handleShowSignUp
+    @objc func handleShowSignUp() {
+        //present registration controller
+    }
     
     
     override func viewDidLoad() {

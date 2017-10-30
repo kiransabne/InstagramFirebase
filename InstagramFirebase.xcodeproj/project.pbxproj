@@ -10,7 +10,7 @@
 		34AB20A7D2CC383920590336 /* Pods_InstagramFirebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81FDAC59B9A08AF0BCDCD771 /* Pods_InstagramFirebase.framework */; };
 		89086B7C1FA70B890021F695 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89086B7B1FA70B890021F695 /* LoginController.swift */; };
 		895344791F97F6CC00EFAA9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895344781F97F6CC00EFAA9E /* AppDelegate.swift */; };
-		8953447B1F97F6CC00EFAA9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953447A1F97F6CC00EFAA9E /* ViewController.swift */; };
+		8953447B1F97F6CC00EFAA9E /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953447A1F97F6CC00EFAA9E /* SignUpController.swift */; };
 		8953447E1F97F6CC00EFAA9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8953447C1F97F6CC00EFAA9E /* Main.storyboard */; };
 		895344801F97F6CC00EFAA9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8953447F1F97F6CC00EFAA9E /* Assets.xcassets */; };
 		895344831F97F6CC00EFAA9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 895344811F97F6CC00EFAA9E /* LaunchScreen.storyboard */; };
@@ -26,7 +26,7 @@
 		89086B7B1FA70B890021F695 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		895344751F97F6CC00EFAA9E /* InstagramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		895344781F97F6CC00EFAA9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8953447A1F97F6CC00EFAA9E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8953447A1F97F6CC00EFAA9E /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		8953447D1F97F6CC00EFAA9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8953447F1F97F6CC00EFAA9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		895344821F97F6CC00EFAA9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		895344911F9D4DBD00EFAA9E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8953447A1F97F6CC00EFAA9E /* ViewController.swift */,
+				8953447A1F97F6CC00EFAA9E /* SignUpController.swift */,
 				895344921F9D4DE100EFAA9E /* MainTabBarController.swift */,
 			);
 			path = Controller;
@@ -274,7 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8953447B1F97F6CC00EFAA9E /* ViewController.swift in Sources */,
+				8953447B1F97F6CC00EFAA9E /* SignUpController.swift in Sources */,
 				8953448E1F9883CA00EFAA9E /* Extensions.swift in Sources */,
 				895344931F9D4DE100EFAA9E /* MainTabBarController.swift in Sources */,
 				895344981F9DF35000EFAA9E /* UserProfileHeader.swift in Sources */,
