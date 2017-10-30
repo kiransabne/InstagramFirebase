@@ -31,6 +31,24 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         //register identifier
         collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         
+        //gear icon to log out
+        setupLogOutButton()
+        
+        
+    }
+    
+    //func to sign out
+    fileprivate func setupLogOutButton() {
+        
+        //bar button item
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear"), style: .plain, target: self, action: #selector(handleLogOut))
+        
+        
+    }
+    
+    //action when user presses logout
+    @objc func handleLogOut() {
+        print("logging out")
     }
     
     //fill collectionview with cells
