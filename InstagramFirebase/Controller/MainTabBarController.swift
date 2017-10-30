@@ -16,8 +16,19 @@ class MainTabBarController: UITabBarController {
         
         //check to see if user is logged in to automatically present login controller
         if Auth.auth().currentUser == nil {
-            //if user is not logged in, then present login controller
-            present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+            //show in hierarchy
+            DispatchQueue.main.async {
+                //if user is not logged in, then present login controller
+                let loginController = LoginController()
+                self.present(loginController, animated: true, completion: nil)
+            }
+            
+            
+            
+            
+            
+            
+            return
         }
         
         
