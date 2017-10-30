@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //check to see if user is logged in to automatically present login controller
+        if Auth.auth().currentUser == nil {
+            //if user is not logged in, then present login controller
+            present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+        }
+        
         
         //collectionview
         let layout = UICollectionViewFlowLayout()
