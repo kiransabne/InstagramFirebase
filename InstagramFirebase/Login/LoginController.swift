@@ -10,12 +10,22 @@ import UIKit
 
 class LoginController: UIViewController {
     
+    //programmatically create button
+    let signUpButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Don't have an account? Sign Up.", for: .normal)
+        return button
+        
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
-        
-        view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        view.addSubview(signUpButton)
+        signUpButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
     }
     
     
