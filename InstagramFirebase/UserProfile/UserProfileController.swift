@@ -53,7 +53,19 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         //add actions to alert controller Log out
         alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_ ) in
-            print("Perform log out")
+           //use firebase to log out user
+            
+            do {
+                //wrap potential sign out error in do catch block
+                try Auth.auth().signOut()
+                //what happens when user signs out? need to present some kind of login controllerr
+                
+            } catch let signOutErr {
+                print("Failed to sign out:", signOutErr)
+            }
+            
+            
+            
             
         }))
         
