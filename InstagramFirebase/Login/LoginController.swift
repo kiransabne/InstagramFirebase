@@ -10,6 +10,13 @@ import UIKit
 
 class LoginController: UIViewController {
     
+    //create UIView programatically
+    let logoContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.002050609095, green: 0.5223442316, blue: 0.7138667703, alpha: 1)
+        return view
+    }()
+    
     //programmatically create button
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
@@ -31,6 +38,11 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(logoContainerView) //add UIView Logo to Controller
+        logoContainerView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150)
+        
+        
         
         navigationController?.isNavigationBarHidden = true //hide navigationbar
         
