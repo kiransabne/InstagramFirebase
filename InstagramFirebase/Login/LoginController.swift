@@ -13,6 +13,17 @@ class LoginController: UIViewController {
     //create UIView programatically
     let logoContainerView: UIView = {
         let view = UIView()
+        
+        let logoImageView = UIImageView(image: #imageLiteral(resourceName: "Instagram_logo_white"))
+        logoImageView.contentMode = .scaleAspectFill
+        
+        
+        view.addSubview(logoImageView)
+        logoImageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 50)
+        logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        
         view.backgroundColor = #colorLiteral(red: 0.002050609095, green: 0.5223442316, blue: 0.7138667703, alpha: 1)
         return view
     }()
