@@ -35,6 +35,13 @@ class LoginController: UIViewController {
         navigationController?.pushViewController(signUpController, animated: true)
     }
     
+    //customize status bar
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent //render white text
+    }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
