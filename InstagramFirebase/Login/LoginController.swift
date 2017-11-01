@@ -126,6 +126,15 @@ class LoginController: UIViewController {
     
     fileprivate func setupInputFields() {
         
+        //create stack view for buttons programatically
+        let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
+        
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.distribution = .fillEqually
+        
+        view.addSubview(stackView)
+        stackView.anchor(top: logoContainerView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 40, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 140)
     }
     
     
