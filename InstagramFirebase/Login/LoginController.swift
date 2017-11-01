@@ -17,7 +17,6 @@ class LoginController: UIViewController {
         let logoImageView = UIImageView(image: #imageLiteral(resourceName: "Instagram_logo_white"))
         logoImageView.contentMode = .scaleAspectFill
         
-        
         view.addSubview(logoImageView)
         logoImageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 50)
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -28,15 +27,68 @@ class LoginController: UIViewController {
         return view
     }()
     
-    //programmatically create button
-    let signUpButton: UIButton = {
+    //create text field programatically
+    let emailTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Email"
+        
+        tf.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.2132707634) //background color using color literal
+        tf.borderStyle = .roundedRect //border for text field
+        tf.font = UIFont(name: "Avenir", size: 14)
+        
+        //tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        
+        return tf
+    }()
+
+    //create text field programatically
+    let passwordTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Password"
+        tf.isSecureTextEntry = true
+        
+        tf.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.2132707634) //background color using color literal
+        tf.borderStyle = .roundedRect //border for text field
+        tf.font = UIFont(name: "Avenir", size: 14)
+        
+        //listener action
+        //tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        
+        
+        return tf
+    }()
+    
+    //programmatically create button at bottom of login controller
+    let loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Don't have an account? Sign Up.", for: .normal)
+        button.setTitle("Login", for: .normal)
         //add action when pressed
-        button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
+        //button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         return button
         
     }()
+    
+    
+    //sign up button
+    let signUpButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Sign Up", for: .normal)
+        
+        button.backgroundColor = #colorLiteral(red: 0.5956160426, green: 0.8298718333, blue: 0.9511463046, alpha: 1)
+        
+        
+        button.layer.cornerRadius = 5
+        button.titleLabel?.font =  UIFont(name: "Avenir", size: 14)
+        button.setTitleColor(.white, for: .normal)
+        
+        //action when Sign up button is pressed
+        //button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        
+        button.isEnabled = false //disable by default
+        
+        return button
+    }()
+    
     
     //func for add action handleShowSignUp
     @objc func handleShowSignUp() {
@@ -68,9 +120,13 @@ class LoginController: UIViewController {
         
         view.addSubview(signUpButton)
         signUpButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        
+        setupInputFields()
     }
     
-    
+    fileprivate func setupInputFields() {
+        
+    }
     
     
     

@@ -131,7 +131,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
     
-        button.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.5956160426, green: 0.8298718333, blue: 0.9511463046, alpha: 1)
        
         
         button.layer.cornerRadius = 5
