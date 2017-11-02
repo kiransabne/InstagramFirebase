@@ -220,12 +220,28 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         
     }
     
-    
+    //already have account  button
+    let alreadyHaveAccountButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+        
+        attributedTitle.append(NSAttributedString(string: "Sign In", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.002071890514, green: 0.6539129615, blue: 0.9284040332, alpha: 1)]))
+        
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        //button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
+        
+        return button
+    }()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(alreadyHaveAccountButton)
+        alreadyHaveAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
