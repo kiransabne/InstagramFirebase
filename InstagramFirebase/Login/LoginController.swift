@@ -62,6 +62,10 @@ class LoginController: UIViewController {
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Login", for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.5874177217, green: 0.8298925757, blue: 0.9511969686, alpha: 1)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 5
+        
         //add action when pressed
         //button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         return button
@@ -72,19 +76,14 @@ class LoginController: UIViewController {
     //sign up button
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Sign Up", for: .normal)
         
-        button.backgroundColor = #colorLiteral(red: 0.5956160426, green: 0.8298718333, blue: 0.9511463046, alpha: 1)
+        let attributedTitle = NSMutableAttributedString(string: "Don't have an account? ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.lightGray])
         
+        button.setAttributedTitle(attributedTitle, for: .normal)
         
-        button.layer.cornerRadius = 5
-        button.titleLabel?.font =  UIFont(name: "Avenir", size: 14)
-        button.setTitleColor(.white, for: .normal)
+       
+        button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         
-        //action when Sign up button is pressed
-        //button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
-        
-        button.isEnabled = false //disable by default
         
         return button
     }()
