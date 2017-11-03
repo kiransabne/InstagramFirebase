@@ -205,11 +205,19 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                 
                 //check potential error
                 if let err = err {
-                print("Failed to save user into db:", err)
+                    print("Failed to save user into db:", err)
                 return
                 }
                 //if successful
                 print("Successfully saved user info to db")
+                    
+                    //attain reference to main UI
+                    guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+                    
+                    mainTabBarController.setupViewControllers()
+                    
+                    
+                    self.dismiss(animated: true, completion: nil)
                 })
                 
                 
@@ -237,7 +245,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     
     @objc func handleAlreadyHaveAccount() {
         //pop SignUpController back to LoginController
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     

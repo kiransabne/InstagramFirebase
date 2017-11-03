@@ -59,21 +59,20 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
                 //wrap potential sign out error in do catch block
                 try Auth.auth().signOut()
                 //what happens when user signs out? need to present some kind of login controllerr
+                //present the logincontroller
+                let loginController = LoginController()
+                let navController = UINavigationController(rootViewController: loginController)
+                
+                self.present(navController, animated: true, completion: nil)
                 
             } catch let signOutErr {
                 print("Failed to sign out:", signOutErr)
             }
             
-            
-            
-            
         }))
         
         //cancel alert controller
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        
-        
         //present the alert controller
         present(alertController, animated: true, completion: nil)
         

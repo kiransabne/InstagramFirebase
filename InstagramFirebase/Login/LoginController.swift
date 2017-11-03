@@ -101,13 +101,19 @@ class LoginController: UIViewController {
         
         Auth.auth().signIn(withEmail: email, password: password, completion: { (user, err) in
             
-          //if cannont sign in then
+          //if can not sign in then
             if let err = err {
                 print("Failed to sign in with email:", err)
                 return
             }
             
             print("Successfully logged back in with user:", user?.uid ?? "")
+            //attain reference to main UI
+            guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+            
+            mainTabBarController.setupViewControllers()
+            
+            
             self.dismiss(animated: true, completion: nil)
         })
     }
@@ -134,7 +140,7 @@ class LoginController: UIViewController {
     @objc func handleShowSignUp() {
         //present registration controller
         let signUpController = SignUpController()
-        print(navigationController)
+       
         navigationController?.pushViewController(signUpController, animated: true)
     }
     
