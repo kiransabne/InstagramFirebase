@@ -16,6 +16,12 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
         let index = viewControllers?.index(of: viewController) //know what viewcontroller icon is selected
         
         if index == 2 {
+            
+            //show PhotoSelectorController
+            let layout = UICollectionViewFlowLayout()
+            let photoSelectorController = PhotoSelectorController(collectionViewLayout: layout)
+            present(photoSelectorController, animated: true, completion: nil)
+            
             return false
         }
         

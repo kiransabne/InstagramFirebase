@@ -6,4 +6,41 @@
 //  Copyright © 2017 Christian Deciga. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class PhotoSelectorController: UICollectionViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        collectionView?.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
