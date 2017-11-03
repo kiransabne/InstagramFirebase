@@ -33,21 +33,31 @@ class MainTabBarController: UITabBarController {
     }
     
     func setupViewControllers() {
+        //home icon
+        let homeController = UIViewController()
+        let homeNavController = UINavigationController(rootViewController: homeController)
+        homeNavController.tabBarItem.image = #imageLiteral(resourceName: "home_selected")
+        homeNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "home_selected")
+        
+        
         
         //collectionview
+        //user profile
         let layout = UICollectionViewFlowLayout()
         let userProfileController = UserProfileController(collectionViewLayout: layout)
         
         //programmatically build navigation controller
-        let navController = UINavigationController(rootViewController: userProfileController)
+        let userProfileNavController = UINavigationController(rootViewController: userProfileController)
         
         //set bar tab items programmatically
-        navController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
-        navController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
+        userProfileNavController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
+        userProfileNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
         
         tabBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
-        viewControllers = [navController, UIViewController()]
+        viewControllers = [homeNavController, userProfileNavController]
+        
+       // viewControllers = [navController, UIViewController()]
         
     }
     
