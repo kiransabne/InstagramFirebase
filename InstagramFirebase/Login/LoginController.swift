@@ -108,6 +108,7 @@ class LoginController: UIViewController {
             }
             
             print("Successfully logged back in with user:", user?.uid ?? "")
+            self.dismiss(animated: true, completion: nil)
         })
     }
     

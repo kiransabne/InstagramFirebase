@@ -28,6 +28,11 @@ class MainTabBarController: UITabBarController {
             return
         }
         
+        setupViewControllers()
+        
+    }
+    
+    func setupViewControllers() {
         
         //collectionview
         let layout = UICollectionViewFlowLayout()
@@ -42,9 +47,17 @@ class MainTabBarController: UITabBarController {
         
         tabBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
-        viewControllers = [navController, UIViewController()]
     }
     
     
 }
+
+
+
+
+
+
+
+
+
 
