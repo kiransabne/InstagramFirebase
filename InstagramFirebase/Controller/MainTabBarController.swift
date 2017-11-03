@@ -34,19 +34,15 @@ class MainTabBarController: UITabBarController {
     
     func setupViewControllers() {
         //home
-        let homeController = UIViewController()
-        let homeNavController = UINavigationController(rootViewController: homeController)
-        homeNavController.tabBarItem.image = #imageLiteral(resourceName: "home_selected")
-        homeNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "home_selected")
+        let homeNavController = templateNavController()
         
         
         //search
         let searchController = UIViewController()
-        let searchNavController = UINavigationController(rootViewController: homeController)
+        let searchNavController = UINavigationController(rootViewController: searchController)
         searchNavController.tabBarItem.image = #imageLiteral(resourceName: "search_unselected")
         searchNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "search_selected")
-        
-        
+    
         
         
         //collectionview
@@ -69,6 +65,16 @@ class MainTabBarController: UITabBarController {
         
     }
     
+    //func for refactoring tab bar item code
+    fileprivate func templateNavController() -> UINavigationController {
+        
+        let homeController = UIViewController()
+        let homeNavController = UINavigationController(rootViewController: homeController)
+        homeNavController.tabBarItem.image = #imageLiteral(resourceName: "home_selected")
+        homeNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "home_selected")
+        
+        return homeNavController
+    }
     
 }
 
