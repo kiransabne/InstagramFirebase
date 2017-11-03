@@ -36,7 +36,7 @@ class LoginController: UIViewController {
         tf.borderStyle = .roundedRect //border for text field
         tf.font = UIFont(name: "Avenir", size: 14)
         
-        //tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         
         return tf
     }()
@@ -52,11 +52,30 @@ class LoginController: UIViewController {
         tf.font = UIFont(name: "Avenir", size: 14)
         
         //listener action
-        //tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         
         
         return tf
     }()
+    
+    @objc func handleTextInputChange() {
+        //change signup button to original color while editing use boolean value
+        let isFormValid = emailTextField.text?.characters.count ?? 0 > 0 && passwordTextField.text?.characters.count ?? 0 > 0
+        
+        //check
+        if isFormValid {
+            loginButton.isEnabled = true
+            loginButton.backgroundColor = #colorLiteral(red: 0.002071890514, green: 0.6539129615, blue: 0.9284040332, alpha: 1)
+        } else {
+            loginButton.isEnabled = false //turn sign up button dark blue when user enters all fields
+            loginButton.backgroundColor = #colorLiteral(red: 0.5955938697, green: 0.829785049, blue: 0.9551936984, alpha: 1)
+        }
+        
+        
+    }
+    
+    
+    
     
     //programmatically create button at bottom of login controller
     let loginButton: UIButton = {
@@ -65,12 +84,19 @@ class LoginController: UIViewController {
         button.backgroundColor = #colorLiteral(red: 0.5874177217, green: 0.8298925757, blue: 0.9511969686, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         
         //add action when pressed
-        //button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        button.isEnabled = false
         return button
         
     }()
+    
+    @objc func handleLogin() {
+        print(123)
+    }
+    
     
     
     //don't have account  button

@@ -236,7 +236,8 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     }()
     
     @objc func handleAlreadyHaveAccount() {
-        print(123)
+        //pop SignUpController back to LoginController
+        navigationController?.popViewController(animated: true)
     }
     
     
