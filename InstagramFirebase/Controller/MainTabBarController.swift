@@ -33,11 +33,19 @@ class MainTabBarController: UITabBarController {
     }
     
     func setupViewControllers() {
-        //home icon
+        //home
         let homeController = UIViewController()
         let homeNavController = UINavigationController(rootViewController: homeController)
         homeNavController.tabBarItem.image = #imageLiteral(resourceName: "home_selected")
         homeNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "home_selected")
+        
+        
+        //search
+        let searchController = UIViewController()
+        let searchNavController = UINavigationController(rootViewController: homeController)
+        searchNavController.tabBarItem.image = #imageLiteral(resourceName: "search_unselected")
+        searchNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "search_selected")
+        
         
         
         
@@ -55,7 +63,7 @@ class MainTabBarController: UITabBarController {
         
         tabBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
-        viewControllers = [homeNavController, userProfileNavController]
+        viewControllers = [homeNavController, searchNavController, userProfileNavController]
         
        // viewControllers = [navController, UIViewController()]
         
