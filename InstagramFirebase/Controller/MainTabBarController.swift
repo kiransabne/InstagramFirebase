@@ -62,7 +62,17 @@ class MainTabBarController: UITabBarController {
         
         tabBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
+        //setup controllers in array
         viewControllers = [homeNavController, searchNavController, plusNavController, likeNavController, userProfileNavController]
+        
+        //modify tab bar item insets
+        //a. use guard let to prevent crash
+        guard let items = tabBar.items else { return }
+        
+        for item in items {
+            item.imageInsets = UIEdgeInsets(top: 4, left: 0, bottom: -4, right: 0)
+        }
+        
         
     }
     
