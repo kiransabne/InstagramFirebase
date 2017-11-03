@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginController: UIViewController {
     
@@ -94,7 +95,20 @@ class LoginController: UIViewController {
     }()
     
     @objc func handleLogin() {
-        print(123)
+        //execute logging back in using Firebase
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, err) in
+            
+          //if cannont sign in then
+            if let err = err {
+                print("Failed to sign in with email:", err)
+                return
+            }
+            
+            print("Successfully logged back in with user:", user?.uid ?? "")
+        })
     }
     
     
