@@ -33,10 +33,11 @@ class MainTabBarController: UITabBarController {
     }
     
     func setupViewControllers() {
-        //home
-        let homeNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"))
         
+        //home, allow to see userprofile as first screen when user is logged in by adding 3rd argument
+        let homeNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"), rootViewController: UserProfileController(collectionViewLayout: UICollectionViewFlowLayout()))
         
+    
         //search
         let searchNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "search_unselected"), selectedImage: #imageLiteral(resourceName: "search_selected"))
         
@@ -63,14 +64,12 @@ class MainTabBarController: UITabBarController {
         
         viewControllers = [homeNavController, searchNavController, plusNavController, likeNavController, userProfileNavController]
         
-       // viewControllers = [navController, UIViewController()]
-        
     }
     
     //func for refactoring tab bar item code
-    fileprivate func templateNavController(unselectedImage: UIImage, selectedImage: UIImage) -> UINavigationController {
+    fileprivate func templateNavController(unselectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController = UIViewController()) -> UINavigationController {
         
-        let viewController = UIViewController()
+        let viewController = rootViewController
         let navController = UINavigationController(rootViewController: viewController)
         navController.tabBarItem.image = unselectedImage
         navController.tabBarItem.selectedImage = selectedImage
