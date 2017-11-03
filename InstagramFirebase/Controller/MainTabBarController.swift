@@ -9,10 +9,24 @@
 import UIKit
 import Firebase
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        
+        let index = viewControllers?.index(of: viewController) //know what viewcontroller icon is selected
+        
+        if index == 2 {
+            return false
+        }
+        
+        return true
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.delegate = self //
         
         //check to see if user is logged in to automatically present login controller
         if Auth.auth().currentUser == nil {
