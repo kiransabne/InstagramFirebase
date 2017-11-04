@@ -35,9 +35,11 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     
     //func to retrieve photos
     fileprivate func fetchPhotos() {
-        print("Fetching photos")
+      
         let fetchOptions = PHFetchOptions()
         fetchOptions.fetchLimit = 10
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        fetchOptions.sortDescriptors = [sortDescriptor]
         
         let allPhotos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         
@@ -117,12 +119,15 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     
     //number of cells shown 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return images.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         //return some kind of cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PhotoSelectorCell
+        
+        cell.photoImageView.image = images[indexPath.item] //slot collectionview rendering out the cell
+        
         
         return cell
     }
