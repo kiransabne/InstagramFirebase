@@ -66,6 +66,10 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
                 if let image = image {
                     self.images.append(image)
                     
+                    //set first photo as default upon opening photoselector
+                    if self.selectedImage == nil {
+                        self.selectedImage = image
+                    }
                 }
                
                 if count == allPhotos.count - 1 {
