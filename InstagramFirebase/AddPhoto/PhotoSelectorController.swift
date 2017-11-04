@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Photos
 class PhotoSelectorController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "cellId"
@@ -25,7 +25,18 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         
         //register a header
         collectionView?.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
+        
+        
+        fetchPhotos()
+
     }
+    
+    fileprivate func fetchPhotos() {
+        print("Fetching photos")
+    }
+    
+    
+    
     
     //spacing for header view
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
