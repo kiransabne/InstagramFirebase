@@ -8,6 +8,8 @@
 
 import UIKit
 import Photos
+
+
 class PhotoSelectorController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "cellId"
@@ -31,6 +33,13 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
 
     }
     
+    //handle the selection of cells inside collectionview
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath)
+    }
+    
+    
+    
     var images = [UIImage]() //empty image array
     
     //func to retrieve photos
@@ -38,8 +47,8 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
       
         let fetchOptions = PHFetchOptions()
         fetchOptions.fetchLimit = 10
-        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
-        fetchOptions.sortDescriptors = [sortDescriptor]
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false) //fetch latest photos
+        fetchOptions.sortDescriptors = [sortDescriptor] //fetch latest photos
         
         let allPhotos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         
