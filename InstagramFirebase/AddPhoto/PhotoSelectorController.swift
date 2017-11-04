@@ -35,11 +35,13 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     
     //handle the selection of cells inside collectionview
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        self.selectedImage = images[indexPath.item] //reference to whatever the selection is
+        self.collectionView?.reloadData() //render the header
+       
     }
     
     
-    
+    var selectedImage: UIImage?
     var images = [UIImage]() //empty image array
     
     //func to retrieve photos
