@@ -31,12 +31,40 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
 
     }
     
+    var images = [UIImage]() //empty image array
+    
+    //func to retrieve photos
     fileprivate func fetchPhotos() {
         print("Fetching photos")
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.fetchLimit = 10
+        
+        let allPhotos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        
+        allPhotos.enumerateObjects { (asset, count, stop) in
+            
+            let imageManager = PHImageManager.default()
+            let targetSize = CGSize(width: 360, height: 350)
+            let options = PHImageRequestOptions()
+            options.isSynchronous = true
+            
+            imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFit, options: options, resultHandler: { (image, info) in
+                
+                if let image = image {
+                    self.images.append(image)
+                    
+                }
+               
+                if count == allPhotos.count - 1 {
+                    self.collectionView?.reloadData()
+                    
+                }
+                
+            })
+        
+        }
+    
     }
-    
-    
-    
     
     //spacing for header view
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
