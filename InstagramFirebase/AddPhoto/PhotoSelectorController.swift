@@ -26,7 +26,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         collectionView?.register(PhotoSelectorCell.self, forCellWithReuseIdentifier: cellId)
         
         //register a header
-        collectionView?.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
+        collectionView?.register(PhotoSelectorHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
         
         
         fetchPhotos()
@@ -93,13 +93,12 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     
     
     
-    //override method to render view
+    //override method to render view for header
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
-        
-        header.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectorHeader
+
+        header.photoImageView.image = selectedImage //set image upon tapping one of grid items
         
         return header
     }
