@@ -15,7 +15,25 @@ class PhotoSelectorController: UICollectionViewController {
         collectionView?.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         
         setupNavigationButtons()
+        
+        //register a custom cell inside controller
+        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
     }
+    
+    
+    //number of cells shown 
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        //return some kind of cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
+        cell.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+        return cell
+    }
+    
+    
     
     override var prefersStatusBarHidden: Bool {
         return true //hide status bar
