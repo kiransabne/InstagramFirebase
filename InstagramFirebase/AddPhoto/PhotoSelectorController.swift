@@ -44,20 +44,31 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     var selectedImage: UIImage?
     var images = [UIImage]() //empty image array
     
-    //func to retrieve photos
-    fileprivate func fetchPhotos() {
-      
+    //refactored into
+    fileprivate func assetsFetchOptions() -> PHFetchOptions {
+        
         let fetchOptions = PHFetchOptions()
-        fetchOptions.fetchLimit = 10
+        fetchOptions.fetchLimit = 30
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false) //fetch latest photos
         fetchOptions.sortDescriptors = [sortDescriptor] //fetch latest photos
         
-        let allPhotos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        return fetchOptions
+    }
+    
+    
+    
+    //func to retrieve photos
+    fileprivate func fetchPhotos() {
+        
+        let allPhotos = PHAsset.fetchAssets(with: .image, options: assetsFetchOptions())
+        
+        //background thread so UI doesn't hang
+        
         
         allPhotos.enumerateObjects { (asset, count, stop) in
-            
+            print(count)
             let imageManager = PHImageManager.default()
-            let targetSize = CGSize(width: 360, height: 350)
+            let targetSize = CGSize(width: 600, height: 600)
             let options = PHImageRequestOptions()
             options.isSynchronous = true
             
