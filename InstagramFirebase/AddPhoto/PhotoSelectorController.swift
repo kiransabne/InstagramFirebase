@@ -18,7 +18,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        collectionView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         setupNavigationButtons()
         
@@ -43,6 +43,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     
     var selectedImage: UIImage?
     var images = [UIImage]() //empty image array
+    var assets = [PHAsset]() //empty PHAssets array
     
     //refactored into
     fileprivate func assetsFetchOptions() -> PHFetchOptions {
@@ -62,34 +63,41 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         
         let allPhotos = PHAsset.fetchAssets(with: .image, options: assetsFetchOptions())
         
-        //background thread so UI doesn't hang
-        
-        
-        allPhotos.enumerateObjects { (asset, count, stop) in
-            print(count)
-            let imageManager = PHImageManager.default()
-            let targetSize = CGSize(width: 600, height: 600)
-            let options = PHImageRequestOptions()
-            options.isSynchronous = true
+        //background thread so UI doesn't hang reduce hanging behavior when presenting fetch photos
+        DispatchQueue.global(qos: .background).async {
             
-            imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFit, options: options, resultHandler: { (image, info) in
+            allPhotos.enumerateObjects ({ (asset, count, stop) in
+                print(count)
+                let imageManager = PHImageManager.default()
+                let targetSize = CGSize(width: 200, height: 200)
+                let options = PHImageRequestOptions()
+                options.isSynchronous = true
                 
-                if let image = image {
-                    self.images.append(image)
+                imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFit, options: options, resultHandler: { (image, info) in
                     
-                    //set first photo as default upon opening photoselector
-                    if self.selectedImage == nil {
-                        self.selectedImage = image
+                    if let image = image {
+                        self.images.append(image)
+                        self.assets.append(asset)
+                        
+                        //set first photo as default upon opening photoselector
+                        if self.selectedImage == nil {
+                            self.selectedImage = image
+                        }
                     }
-                }
-               
-                if count == allPhotos.count - 1 {
-                    self.collectionView?.reloadData()
                     
-                }
-                
-            })
+                    if count == allPhotos.count - 1 {
+                        
+                        //get back on main thread
+                        DispatchQueue.main.async {
+                            self.collectionView?.reloadData()
+                            
+                        }
         
+                        
+                    }
+                })
+            })
+            
         }
     
     }
@@ -112,8 +120,31 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectorHeader
-
-        header.photoImageView.image = selectedImage //set image upon tapping one of grid items
+            
+        header.photoImageView.image = selectedImage
+        if let selectedImage = selectedImage {
+            if let index = self.images.index(of: selectedImage) {
+               let selectedAsset = self.assets[index]
+                
+                //request larger image for header
+                let imageManager = PHImageManager.default()
+                let targetSize = CGSize(width: 600, height: 600)
+                imageManager.requestImage(for: selectedAsset, targetSize: targetSize, contentMode: .default, options: nil, resultHandler: { (image, info ) in
+                    
+                    
+                    header.photoImageView.image = image
+                    
+                    
+                    
+                })
+                
+                
+                
+            }
+            
+        }
+        
+        
         
         return header
     }
