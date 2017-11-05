@@ -117,14 +117,17 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         return CGSize(width: width, height: width)
     }
     
-    
+    var header: PhotoSelectorHeader?
     
     //override method to render view for header
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectorHeader
-            
+        
+        self.header = header //everytime rendering header holding reference
+        
         header.photoImageView.image = selectedImage
+        
         if let selectedImage = selectedImage {
             if let index = self.images.index(of: selectedImage) {
                let selectedAsset = self.assets[index]
@@ -212,6 +215,8 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     @objc func handleNext() {
         //push on to navigation stack in new controller
         let sharePhotoController = SharePhotoController()
+        sharePhotoController.selectedImage = header?.photoImageView.image 
+        
         navigationController?.pushViewController(sharePhotoController, animated: true)
         
     }
