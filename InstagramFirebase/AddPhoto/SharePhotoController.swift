@@ -15,7 +15,14 @@ class SharePhotoController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(handleShare)) //create Share bar button item
     }
+    
+    @objc func handleShare() {
+        print("handle share")
+    }
+    
     
     
     //hide the status bar
