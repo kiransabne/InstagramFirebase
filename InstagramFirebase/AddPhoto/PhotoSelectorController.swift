@@ -37,6 +37,9 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedImage = images[indexPath.item] //reference to whatever the selection is
         self.collectionView?.reloadData() //render the header
+        
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
        
     }
     
@@ -207,7 +210,8 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     }
     
     @objc func handleNext() {
-        print("handling next")
+        //push on to navigation stack in new controller
+        
     }
     
     
