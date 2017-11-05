@@ -11,6 +11,15 @@ import UIKit
 
 class SharePhotoController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    }
     
     
+    //hide the status bar
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 }

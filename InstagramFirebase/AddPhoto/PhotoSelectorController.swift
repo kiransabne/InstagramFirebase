@@ -211,6 +211,8 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     
     @objc func handleNext() {
         //push on to navigation stack in new controller
+        let sharePhotoController = SharePhotoController()
+        navigationController?.pushViewController(sharePhotoController, animated: true)
         
     }
     
