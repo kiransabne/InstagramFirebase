@@ -21,6 +21,17 @@ class SharePhotoController: UIViewController {
         setupImageAndTextViews()
     }
     
+    //imageview programatically
+    let imageView: UIImageView = {
+        let iv = UIImageView()
+        iv.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        iv.contentMode = .scaleAspectFill
+        return iv
+    
+    }()
+    
+    
+    
     fileprivate func setupImageAndTextViews() {
         //setup image and text views in this method
         
@@ -29,7 +40,9 @@ class SharePhotoController: UIViewController {
         
         //add containerview with constraints
         view.addSubview(containerView)
-        containerView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 100)
+        containerView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 100)
+        containerView.addSubview(imageView)
+        imageView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 0, width: 84, height: 0)
     }
     
     
