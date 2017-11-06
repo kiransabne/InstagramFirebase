@@ -81,14 +81,24 @@ class SharePhotoController: UIViewController {
                 return
             }
             
+            //upload to Firebase storage
             guard let imageUrl = metadata?.downloadURL()?.absoluteString else { return }
             
             print("Successfully uploaded post image:", imageUrl)
+            self.saveToDatabaseWithImageUrl() //call to save image to Firebase database
+            
+            
             
         }
     }
     
-    
+    fileprivate func saveToDatabaseWithImageUrl() {
+        //uid is user currently logged in
+        guard let uid = Auth.auth()?.currentUser?.uid else { return }
+        
+        //save to Firebase database
+        Database.database().reference().child("posts").child(uid)
+    }
     
     //hide the status bar
     override var prefersStatusBarHidden: Bool {
