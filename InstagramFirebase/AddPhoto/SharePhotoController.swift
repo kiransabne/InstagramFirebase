@@ -68,20 +68,24 @@ class SharePhotoController: UIViewController {
     
     @objc func handleShare() {
         
+        //unwrap two values
         guard let image = selectedImage else { return }
         
         guard let uploadData = UIImageJPEGRepresentation(image, 0.5) else { return }
+        
+        navigationItem.rightBarButtonItem?.isEnabled = false //disable share button
         
         //call Firebase reference to store photo to Firebase
         let filename = NSUUID().uuidString
         Storage.storage().reference().child("posts").child(filename).putData(uploadData, metadata: nil) { (metadata, err) in
             
             if let err = err {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true //enable if there is an error
                 print("Failed to upload post image:", err)
                 return
             }
             
-            //upload to Firebase storage
+            //upload to Firebase storage database
             guard let imageUrl = metadata?.downloadURL()?.absoluteString else { return }
             
             print("Successfully uploaded post image:", imageUrl)
@@ -113,10 +117,12 @@ class SharePhotoController: UIViewController {
         
         ref.updateChildValues(values) { (err, ref) in
         if let err = err {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
             print("Failed to save post to DB", err)
             return
         }
             print("Successfully saved post to DB")
+            self.dismiss(animated: true, completion: nil) //dismiss controller
         }
     }
     
