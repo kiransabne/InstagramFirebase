@@ -123,9 +123,9 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     //show cells
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
         
-        cell.backgroundColor = .purple
+        cell.post = posts[indexPath.item] //access userprofile cell
         
         return cell
     }
