@@ -7,3 +7,19 @@
 //
 
 import Foundation
+
+
+struct Post {
+    
+    let imageUrl: String 
+    
+    
+}
+
+
+
+
+
+
+
+

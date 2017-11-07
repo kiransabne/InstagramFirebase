@@ -56,6 +56,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
                 
                 let imageUrl = dictionary["imageUrl"] as? String
                 print("imageUrl: \(imageUrl)")
+                
+                
             })
             
         }) { (err) in
