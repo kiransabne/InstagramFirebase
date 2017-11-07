@@ -94,6 +94,10 @@ class SharePhotoController: UIViewController {
     
     //save to Firebase database
     fileprivate func saveToDatabaseWithImageUrl(imageUrl: String) {
+        //save caption text
+        guard let caption = textView.text else { return }
+        
+        
         //uid is user currently logged in
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
