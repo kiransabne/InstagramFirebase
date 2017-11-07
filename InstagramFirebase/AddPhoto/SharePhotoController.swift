@@ -68,6 +68,10 @@ class SharePhotoController: UIViewController {
     
     @objc func handleShare() {
         
+        //use guard let to make sure there is text in the caption
+        guard let caption = textView.text, caption.characters.count > 0 else { return }
+        
+        
         //unwrap two values
         guard let image = selectedImage else { return }
         

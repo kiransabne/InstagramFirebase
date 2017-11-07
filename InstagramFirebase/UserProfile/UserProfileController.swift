@@ -34,8 +34,15 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         //gear icon to log out
         setupLogOutButton()
         
+        fetchPosts()
         
     }
+    
+    fileprivate func fetchPosts() {
+        
+    }
+    
+    
     
     //func to sign out
     fileprivate func setupLogOutButton() {
