@@ -38,6 +38,9 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
     }
     
+    var posts = [Post]()
+    
+    
     fileprivate func fetchPosts() {
        
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -54,11 +57,12 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
                 
                 guard let dictionary = value as? [String: Any] else { return }
                 
-                let imageUrl = dictionary["imageUrl"] as? String
-                print("imageUrl: \(imageUrl)")
-                
+                let post = Post(dictionary: dictionary) //object
+                self.posts.append(post)
                 
             })
+            
+            self.collectionView?.reloadData()
             
         }) { (err) in
             print("Failed to fetch posts:", err)
@@ -113,7 +117,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         
-        return 7
+        return posts.count
     }
     
     //show cells

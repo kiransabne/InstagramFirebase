@@ -13,7 +13,10 @@ struct Post {
     
     let imageUrl: String 
     
-    
+    //dictionary constructor
+    init(dictionary: [String: Any]) {
+        self.imageUrl = dictionary["imageUrl"] as? String ?? ""
+    }
 }
 
 
