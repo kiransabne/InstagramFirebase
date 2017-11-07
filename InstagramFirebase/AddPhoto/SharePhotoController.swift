@@ -85,19 +85,30 @@ class SharePhotoController: UIViewController {
             guard let imageUrl = metadata?.downloadURL()?.absoluteString else { return }
             
             print("Successfully uploaded post image:", imageUrl)
-            self.saveToDatabaseWithImageUrl() //call to save image to Firebase database
+            self.saveToDatabaseWithImageUrl(imageUrl: imageUrl) //call to save image to Firebase database
             
             
             
         }
     }
     
-    fileprivate func saveToDatabaseWithImageUrl() {
+    //save to Firebase database
+    fileprivate func saveToDatabaseWithImageUrl(imageUrl: String) {
         //uid is user currently logged in
-        guard let uid = Auth.auth()?.currentUser?.uid else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         
         //save to Firebase database
-        Database.database().reference().child("posts").child(uid)
+        let userPostRef = Database.database().reference().child("posts").child(uid)
+        let ref = userPostRef.childByAutoId()
+        
+        let values = ["imageUrl": imageUrl]
+        ref.updateChildValues(values) { (err, ref) in
+        if let err = err {
+            print("Failed to save post to DB", err)
+            return
+        }
+            print("Successfully saved post to DB")
+        }
     }
     
     //hide the status bar
