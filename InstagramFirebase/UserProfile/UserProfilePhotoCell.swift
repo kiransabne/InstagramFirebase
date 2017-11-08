@@ -14,16 +14,21 @@ class UserProfilePhotoCell: UICollectionViewCell {
     var post: Post? {
         
         didSet {
-            print(post?.imageUrl ?? "")
+            print(1)
             
             guard let imageUrl = post?.imageUrl else { return }
             
             guard let url = URL(string: imageUrl) else { return }
             
+            //data task operation occurs asynchronously on background thread
             URLSession.shared.dataTask(with: url) { (data, response, err) in
                 if let err = err {
                     print("Failed to fetch post image:", err)
                     return
+                }
+                
+                if url.absoluteString != self.post?.imageUrl {
+                    return //prevent images from loading incorrectly
                 }
                 
                 //call external image with url
