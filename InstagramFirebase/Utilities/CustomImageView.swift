@@ -10,4 +10,14 @@ import UIKit
 
 class CustomImageView: UIImageView {
     
+    func loadImage(urlString: String) {
+        print("Loading image...")
+    }
+    
+    
+    
+    
+    
+    
+    
 }

@@ -14,9 +14,9 @@ class UserProfilePhotoCell: UICollectionViewCell {
     var post: Post? {
         
         didSet {
-            print(1)
             
-            guard let imageUrl = post?.imageUrl else { return }
+            guard let imageUrl  = post?.imageUrl else { return }
+            photoImageView.loadImage(urlString: imageUrl)
             
             guard let url = URL(string: imageUrl) else { return }
             
@@ -50,8 +50,8 @@ class UserProfilePhotoCell: UICollectionViewCell {
     
     
     //image view to load image in
-    let photoImageView: UIImageView = {
-        let iv = UIImageView()
+    let photoImageView: CustomImageView = {
+        let iv = CustomImageView()
         iv.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
