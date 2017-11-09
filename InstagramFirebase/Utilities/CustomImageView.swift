@@ -10,8 +10,14 @@ import UIKit
 
 class CustomImageView: UIImageView {
     
+    var lastURLUsedToLoadImage: String?
+    
+    
     func loadImage(urlString: String) {
         print("Loading image...")
+        
+        lastURLUsedToLoadImage = urlString
+        
         
         //load image
         guard let url = URL(string: urlString) else { return }
@@ -23,9 +29,9 @@ class CustomImageView: UIImageView {
                 return
             }
             
-            ///if url.absoluteString != self.post?.imageUrl {
-                //return //prevent images from loading incorrectly
-            //}
+            if url.absoluteString != self.lastURLUsedToLoadImage {
+                return
+            }
             
             //call external image with url
             guard let imageData = data else { return }
