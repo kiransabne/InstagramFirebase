@@ -15,15 +15,19 @@ class UserProfileHeader: UICollectionViewCell {
     //model object
     var user: User? {
         didSet {
-            setupProfileImage()
+            
+            //string that belongs to user's profile image
+            guard let profileImageUrl = user?.profileImageUrl else  { return }
+            
+            profileImageView.loadImage(urlString: profileImageUrl) //load profile image view and user's posts cells
             
             usernameLabel.text = user?.username
         }
     }
     
     //adding userprofile view programmatically
-    let profileImageView: UIImageView = {
-        let iv = UIImageView()
+    let profileImageView: CustomImageView = {
+        let iv = CustomImageView()
         return iv
     }() //execute the closure
     
@@ -190,10 +194,9 @@ class UserProfileHeader: UICollectionViewCell {
     }
     
     
+    //setup profile image view
     
     fileprivate func setupProfileImage() {
-        
-        //fetch username for Firebase users using guard let statement
         guard let profileImageUrl = user?.profileImageUrl else { return }
         
         guard let url = URL(string: profileImageUrl) else { return }
@@ -201,7 +204,7 @@ class UserProfileHeader: UICollectionViewCell {
         URLSession.shared.dataTask(with: url) { (data, response, err) in
             //check for the error, then construct the image using data
             if let err = err {
-                print("Failed to fetch profile image:", err)
+                print("Failed to fetch profile image: ", err)
                 return
             }
             
@@ -209,7 +212,8 @@ class UserProfileHeader: UICollectionViewCell {
             guard let data = data else { return }
             
             let image = UIImage(data: data)
-           //need to get back onto the main UI thread
+            
+            //need to get back onto the main UI Thread
             DispatchQueue.main.async {
                 self.profileImageView.image = image
             }

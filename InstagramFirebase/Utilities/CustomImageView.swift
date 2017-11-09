@@ -12,6 +12,43 @@ class CustomImageView: UIImageView {
     
     func loadImage(urlString: String) {
         print("Loading image...")
+        
+        //load image
+        guard let url = URL(string: urlString) else { return }
+        
+        //data task operation occurs asynchronously on background thread
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            if let err = err {
+                print("Failed to fetch post image:", err)
+                return
+            }
+            
+            ///if url.absoluteString != self.post?.imageUrl {
+                //return //prevent images from loading incorrectly
+            //}
+            
+            //call external image with url
+            guard let imageData = data else { return }
+            
+            let photoImage = UIImage(data: imageData)
+            
+            //execute on main thread
+            DispatchQueue.main.async {
+                //update image view in main thread
+                self.image = photoImage //set image directly
+                
+                
+            }
+            
+            }.resume() // use resume at end of data task operations
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
     
