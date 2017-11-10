@@ -58,7 +58,7 @@ class MainTabBarController: UITabBarController,UITabBarControllerDelegate {
     func setupViewControllers() {
         
         //home, allow to see userprofile as first screen when user is logged in by adding 3rd argument
-        let homeNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"), rootViewController: UserProfileController(collectionViewLayout: UICollectionViewFlowLayout()))
+        let homeNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"), rootViewController: HomeController(collectionViewLayout: UICollectionViewFlowLayout()))
         
     
         //search
