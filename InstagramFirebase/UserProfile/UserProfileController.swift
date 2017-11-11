@@ -65,37 +65,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     
-    
-    fileprivate func fetchPosts() {
-       
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        let ref = Database.database().reference().child("posts").child(uid)
-        
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            //print(snapshot.value)
-            
-            guard let dictionaries = snapshot.value as? [String: Any] else { return }
-            
-            dictionaries.forEach({ (key, value) in
-                //print("Key\(key), Value: \(value)")
-                
-                guard let dictionary = value as? [String: Any] else { return }
-                
-                let post = Post(dictionary: dictionary) //object
-                self.posts.append(post)
-                
-            })
-            
-            self.collectionView?.reloadData()
-            
-        }) { (err) in
-            print("Failed to fetch posts:", err)
-        }
-    }
-    
-    
-    
     //func to sign out
     fileprivate func setupLogOutButton() {
         
