@@ -48,6 +48,18 @@ class HomePostCell: UICollectionViewCell {
     }()
     
     
+    //options button
+    let optionsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("•••", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        return button
+     
+    }()
+    
+    
+    
+    
     
     //create image view to load into cell using customimageview
     let photoImageView: CustomImageView = {
@@ -63,13 +75,26 @@ class HomePostCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        
         addSubview(userProfileImageView) //add userprofileImageView
         addSubview(usernameLabel) //add usernameLabel to view
+        addSubview(photoImageView) //add image to the cell
+        addSubview(optionsButton)
+        
+        
+        //anchors (constraints)
         userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         userProfileImageView.layer.cornerRadius = 40 / 2 //make round
         
-        addSubview(photoImageView) //add image to the cell
-        photoImageView.anchor(top: userProfileImageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: photoImageView.topAnchor, right: optionsButton.leftAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        optionsButton.anchor(top: topAnchor, left: nil, bottom: photoImageView.topAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 44, height: 44)
+        
+        photoImageView.anchor(top: userProfileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        photoImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true //adds space between posts
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

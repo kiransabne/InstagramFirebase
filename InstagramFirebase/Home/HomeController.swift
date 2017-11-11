@@ -66,7 +66,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     //render customize size instead of default 50x50
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.width, height: 200)
+        var height: CGFloat = 40 + 8 + 8 //username userprofileImageView
+        height += view.frame.width
+        
+        
+        return CGSize(width: view.frame.width, height: height)
     }
     
     //render out items in collection view
