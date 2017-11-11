@@ -57,7 +57,31 @@ class HomePostCell: UICollectionViewCell {
      
     }()
     
+    //like button
+    let likeButton: UIButton = {
+        
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
+        return button
+    }()
     
+    
+    //comment button
+    let commentButton: UIButton = {
+        
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "comment").withRenderingMode(.alwaysOriginal), for: .normal)
+        return button
+        
+    }()
+    
+    //send button
+    let sendButton: UIButton = {
+        
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "send2").withRenderingMode(.alwaysOriginal), for: .normal)
+        return button
+    }()
     
     
     
