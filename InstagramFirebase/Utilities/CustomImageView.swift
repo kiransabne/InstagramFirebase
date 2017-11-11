@@ -60,19 +60,7 @@ class CustomImageView: UIImageView {
             
             }.resume() // use resume at end of data task operations
         
-        
-        
-        
-        
-        
-        
-        
     }
-    
-    
-    
-    
-    
     
     
 }

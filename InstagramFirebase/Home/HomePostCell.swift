@@ -24,6 +24,20 @@ class HomePostCell: UICollectionViewCell {
     }
     
     
+    //userprofile image
+    let userProfileImageView: CustomImageView = {
+        
+        let iv = CustomImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        
+        return iv
+        
+        
+    }()
+    
+    
     //create image view to load into cell using customimageview
     let photoImageView: CustomImageView = {
         let iv = CustomImageView()
@@ -38,6 +52,8 @@ class HomePostCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        addSubview(userProfileImageView) //add userprofileImageView
+        userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         addSubview(photoImageView) //add image to the cell
         photoImageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
     }
