@@ -119,7 +119,18 @@ class HomePostCell: UICollectionViewCell {
         
         photoImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true //adds space between posts
         
+        
+        setupActionButtons() //call function for action buttons
+        
     }
+    
+    fileprivate func setupActionButtons() {
+        
+        
+    }
+    
+    
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
