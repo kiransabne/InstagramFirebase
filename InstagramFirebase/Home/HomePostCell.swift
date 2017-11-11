@@ -37,6 +37,17 @@ class HomePostCell: UICollectionViewCell {
         
     }()
     
+    //username label
+    let usernameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Username"
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        return label
+        
+        
+    }()
+    
+    
     
     //create image view to load into cell using customimageview
     let photoImageView: CustomImageView = {
@@ -48,11 +59,12 @@ class HomePostCell: UICollectionViewCell {
         
     }()
     
-    //cells
+    //Initializer cells
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         addSubview(userProfileImageView) //add userprofileImageView
+        addSubview(usernameLabel) //add usernameLabel to view
         userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         userProfileImageView.layer.cornerRadius = 40 / 2 //make round
         
