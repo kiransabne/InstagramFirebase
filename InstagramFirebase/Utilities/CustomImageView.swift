@@ -8,16 +8,25 @@
 
 import UIKit
 
+var imageCache = [String: UIImage]() //var to help user not use up a lot of data
+
 class CustomImageView: UIImageView {
     
     var lastURLUsedToLoadImage: String?
     
-    
+    //fetch images
     func loadImage(urlString: String) {
         print("Loading image...")
         
         lastURLUsedToLoadImage = urlString
         
+        //check cache for the image
+        if let cacheImage = imageCache[urlString] {
+            
+           self.image = cacheImage
+            return
+            
+        }
         
         //load image
         guard let url = URL(string: urlString) else { return }
@@ -36,7 +45,10 @@ class CustomImageView: UIImageView {
             //call external image with url
             guard let imageData = data else { return }
             
+            
             let photoImage = UIImage(data: imageData)
+            
+            imageCache[url.absoluteString] = photoImage //stuff image into cache
             
             //execute on main thread
             DispatchQueue.main.async {

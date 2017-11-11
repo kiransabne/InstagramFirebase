@@ -22,14 +22,14 @@ class HomePostCell: UICollectionViewCell {
             photoImageView.loadImage(urlString: postImageUrl)
         }
     }
-        
-       
     
     
     //create image view to load into cell using customimageview
     let photoImageView: CustomImageView = {
         let iv = CustomImageView()
-        iv.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+       
         return iv
         
     }()
