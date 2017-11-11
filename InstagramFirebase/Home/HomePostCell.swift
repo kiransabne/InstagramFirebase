@@ -12,9 +12,23 @@ import UIKit
 
 class HomePostCell: UICollectionViewCell {
     
-    //create image view
-    let photoImageView: UIImageView = {
-        let iv = UIImageView()
+    //var to render image to cell
+    var post: Post? {
+        didSet {
+            
+            guard let postImageUrl = post?.imageUrl else { return } //Url to load image into cell
+            
+           
+            photoImageView.loadImage(urlString: postImageUrl)
+        }
+    }
+        
+       
+    
+    
+    //create image view to load into cell using customimageview
+    let photoImageView: CustomImageView = {
+        let iv = CustomImageView()
         iv.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         return iv
         

@@ -21,10 +21,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         
         setupNavigationItems() //call navbar
+        fetchPosts()
     }
     
-    var posts = [Post]()
+    var posts = [Post]() //array of posts
     
+    //access to user's posts
     fileprivate func fetchPosts() {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -69,15 +71,16 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     //render out items in collection view
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return posts.count
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         //get cell from collectionview by dequeue
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
         
+        cell.post = posts[indexPath.item] //render home posts
         
          return cell
        
