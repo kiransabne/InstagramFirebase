@@ -76,7 +76,7 @@ class HomePostCell: UICollectionViewCell {
     }()
     
     //send button
-    let sendButton: UIButton = {
+    let sendMessageButton: UIButton = {
         
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "send2").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -124,9 +124,15 @@ class HomePostCell: UICollectionViewCell {
         
     }
     
+    //place three buttons into view using a stackview
     fileprivate func setupActionButtons() {
         
+        //stackview
+        let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton, sendMessageButton])
         
+        stackView.distribution = .fillEqually
+        addSubview(stackView) //add to view
+        stackView.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 150, height: 50)
     }
     
     
