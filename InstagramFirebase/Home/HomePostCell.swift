@@ -106,7 +106,16 @@ class HomePostCell: UICollectionViewCell {
     //label text
     let captionLabel: UILabel = {
         let label = UILabel()
-        label.text = "SOMETHING FOR NOW"
+        //label.text = "SOMETHING FOR NOW"
+        //render out attributed text
+        let attributedText = NSMutableAttributedString(string: "Username", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize:14)])
+        
+        attributedText.append(NSAttributedString(string: " Some caption text that will perhaps wrap onto the next line", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
+        
+        label.attributedText = attributedText
+        label.numberOfLines = 0
+        
+        label.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
         return label
     }()
     
@@ -137,6 +146,8 @@ class HomePostCell: UICollectionViewCell {
         
         
         setupActionButtons() //call function for action buttons
+        addSubview(captionLabel)
+        captionLabel.anchor(top: likeButton.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
     }
     
