@@ -30,6 +30,7 @@ class HomePostCell: UICollectionViewCell {
             
             userProfileImageView.loadImage(urlString: profileImageUrl) //dispaly userprofileimage view inside post object
             
+            captionLabel.text = post?.caption //show caption from user
             
         }
     }
