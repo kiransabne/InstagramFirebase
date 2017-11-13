@@ -103,7 +103,7 @@ class HomePostCell: UICollectionViewCell {
     }()
     
     
-    //label text
+    //caption label text
     let captionLabel: UILabel = {
         let label = UILabel()
         //label.text = "SOMETHING FOR NOW"
@@ -112,10 +112,15 @@ class HomePostCell: UICollectionViewCell {
         
         attributedText.append(NSAttributedString(string: " Some caption text that will perhaps wrap onto the next line", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
         
-        label.attributedText = attributedText
-        label.numberOfLines = 0
+        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 4)])) //small gab in between label
         
-        label.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+        
+        attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))
+        
+        label.attributedText = attributedText
+        label.numberOfLines = 0 //wrap the text
+        
+    
         return label
     }()
     
@@ -123,14 +128,10 @@ class HomePostCell: UICollectionViewCell {
     //Initializer cells
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        
         addSubview(userProfileImageView) //add userprofileImageView
         addSubview(usernameLabel) //add usernameLabel to view
         addSubview(photoImageView) //add image to the cell
         addSubview(optionsButton)
-        
         
         //anchors (constraints)
         userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
@@ -162,10 +163,8 @@ class HomePostCell: UICollectionViewCell {
         stackView.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
         
         addSubview(bookmarkButton) //add bookmarkbutton
-        bookmarkButton.anchor(top: photoImageView.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 40, height: 50)
+        bookmarkButton.anchor(top: photoImageView.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 40, height: 50)
     }
-    
-    
     
     
     required init?(coder aDecoder: NSCoder) {
