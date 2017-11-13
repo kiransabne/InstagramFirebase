@@ -26,9 +26,9 @@ class HomePostCell: UICollectionViewCell {
             usernameLabel.text = post?.user.username //wouldn't this be nice? have to set up data models in project so that they contain reference to whatever we need
             
             
-            guard let profileImageUrl = post?.user.profileImageUrl else { return } //display userprofileimage view
+            guard let profileImageUrl = post?.user.profileImageUrl else { return } //display userprofileimage view inside post object
             
-            userProfileImageView.loadImage(urlString: profileImageUrl) //dispaly userprofileimage view
+            userProfileImageView.loadImage(urlString: profileImageUrl) //dispaly userprofileimage view inside post object
             
             
         }
@@ -41,7 +41,7 @@ class HomePostCell: UICollectionViewCell {
         let iv = CustomImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        
         
         return iv
         
@@ -117,7 +117,7 @@ class HomePostCell: UICollectionViewCell {
     //caption label text
     let captionLabel: UILabel = {
         let label = UILabel()
-        //label.text = "SOMETHING FOR NOW"
+        
         //render out attributed text
         let attributedText = NSMutableAttributedString(string: "Username", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize:14)])
         
