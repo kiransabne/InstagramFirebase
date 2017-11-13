@@ -20,6 +20,11 @@ class HomePostCell: UICollectionViewCell {
             
            
             photoImageView.loadImage(urlString: postImageUrl)
+            
+            usernameLabel.text = "TEST USERNAME" //displays username
+            
+            usernameLabel.text = post?.user.username //wouldn't this be nice? have to set up data models in project so that they contain reference to whatever we need
+            
         }
     }
     
@@ -112,7 +117,7 @@ class HomePostCell: UICollectionViewCell {
         
         attributedText.append(NSAttributedString(string: " Some caption text that will perhaps wrap onto the next line", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
         
-        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 4)])) //small gab in between label
+        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 4)])) //small gap in between label
         
         
         attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))

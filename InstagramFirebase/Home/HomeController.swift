@@ -43,7 +43,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 
                 guard let dictionary = value as? [String: Any] else { return }
                 
-                let post = Post(dictionary: dictionary) //object
+                let dummyUser = User(dictionary: ["username": "bvoong"])
+                
+                
+                let post = Post(user: dummyUser, dictionary: dictionary)
+                
+                
                 self.posts.append(post)
                 
             })
