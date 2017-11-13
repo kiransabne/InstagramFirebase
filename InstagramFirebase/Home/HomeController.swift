@@ -36,7 +36,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             
             guard let userDictionary = snapshot.value as? [String: Any] else { return }
             
-            let user = User(dictionary: userDictionary) //user object
+            let user = User(dictionary: userDictionary) //user object, fetch the correct user
             
             let ref = Database.database().reference().child("posts").child(uid)
             
@@ -45,16 +45,17 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 
                 guard let dictionaries = snapshot.value as? [String: Any] else { return }
                 
+                //make fetch to observe all of post objects
                 dictionaries.forEach({ (key, value) in
                     //print("Key\(key), Value: \(value)")
                     
                     guard let dictionary = value as? [String: Any] else { return }
                     
                     
-                    let post = Post(user: user, dictionary: dictionary)
+                    let post = Post(user: user, dictionary: dictionary)//constructing all posts setting user on it
                     
                     
-                    self.posts.append(post)
+                    self.posts.append(post) //iterate through all posts
                     
                 })
                 

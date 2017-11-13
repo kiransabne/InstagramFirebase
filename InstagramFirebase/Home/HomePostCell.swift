@@ -25,6 +25,12 @@ class HomePostCell: UICollectionViewCell {
             
             usernameLabel.text = post?.user.username //wouldn't this be nice? have to set up data models in project so that they contain reference to whatever we need
             
+            
+            guard let profileImageUrl = post?.user.profileImageUrl else { return } //display userprofileimage view
+            
+            userProfileImageView.loadImage(urlString: profileImageUrl) //dispaly userprofileimage view
+            
+            
         }
     }
     
