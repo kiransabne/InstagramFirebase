@@ -31,11 +31,15 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
+        //*LOGIC
+        
         //fetch user via Firebase database call to show username
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
+            //convert snapshot into dictionary
             guard let userDictionary = snapshot.value as? [String: Any] else { return }
             
+            //turn into user
             let user = User(uid: uid, dictionary: userDictionary)  //user object, fetch the correct user
             
             
@@ -111,3 +115,27 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
 }
+
+//extension to refactor fetch user code
+extension Database {
+    
+    static func fetchUserWithUID(uid: String) {
+        print("Fetching user with uid:", uid)
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
