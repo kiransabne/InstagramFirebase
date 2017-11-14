@@ -36,42 +36,41 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             
             guard let userDictionary = snapshot.value as? [String: Any] else { return }
             
-            let user = User(dictionary: userDictionary) //user object, fetch the correct user
+            let user = User(uid: uid, dictionary: userDictionary)  //user object, fetch the correct user
             
-            let ref = Database.database().reference().child("posts").child(uid)
             
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                //print(snapshot.value)
-                
-                guard let dictionaries = snapshot.value as? [String: Any] else { return }
-                
-                //make fetch to observe all of post objects
-                dictionaries.forEach({ (key, value) in
-                    //print("Key\(key), Value: \(value)")
-                    
-                    guard let dictionary = value as? [String: Any] else { return }
-                    
-                    
-                    let post = Post(user: user, dictionary: dictionary)//constructing all posts setting user on it
-                    
-                    
-                    self.posts.append(post) //iterate through all posts
-                    
-                })
-                
-                self.collectionView?.reloadData()
-                
-            }) { (err) in
-                print("Failed to fetch posts:", err)
-            }
+            self.fetchPostsWithUser(user: user)
+            
         }) { (err) in
             print("Failed to fetch user for posts:", err)
         }
         
-        
-        
     }
     
+    
+    //user object 
+    fileprivate func fetchPostsWithUser(user: User) {
+        
+        //fetch post belonging to the right user
+        let ref = Database.database().reference().child("posts").child(user.uid);ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+            
+            dictionaries.forEach({ (key, value) in
+                guard let dictionary = value as? [String: Any] else { return }
+                
+                let post = Post(user: user, dictionary: dictionary)
+                
+                self.posts.append(post)
+            })
+            
+            self.collectionView?.reloadData()
+            
+        }) { (err) in
+            print("Failed to fetch posts:", err)
+        
+        }
+    }
     
     
     //set up navbar

@@ -188,8 +188,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             //let profileImageUrl = dictionary["profileImageUrl"] as? String
             //let username = dictionary["username"] as? String
             
-            
-            self.user = User(dictionary: dictionary) //constructed object from var user: User?
+            self.user = User(uid: uid, dictionary: dictionary) 
             
             self.navigationItem.title = self.user?.username //set title of username
             
