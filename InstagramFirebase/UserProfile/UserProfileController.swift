@@ -56,8 +56,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             
             let post = Post(user: user, dictionary: dictionary)
             
-            
-            self.posts.append(post)
+            self.posts.insert(post, at: 0) //first image of collectionview grid
+            //self.posts.append(post) //post array
             
             self.collectionView?.reloadData() //reload the posts
             
@@ -203,22 +203,3 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
 }
-
-//model object using struct
-struct User {
-    let username: String
-    let profileImageUrl: String
-    
-    //constructor to help set up properties
-    init(dictionary: [String: Any]) {
-        self.username = dictionary["username"] as? String ?? ""
-        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
-    }
-    
-}
-
-
-
-
-
-
