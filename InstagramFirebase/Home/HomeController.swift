@@ -31,22 +31,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        //*LOGIC
-        
-        //fetch user via Firebase database call to show username
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            //convert snapshot into dictionary
-            guard let userDictionary = snapshot.value as? [String: Any] else { return }
-            
-            //turn into user
-            let user = User(uid: uid, dictionary: userDictionary)  //user object, fetch the correct user
-            
-            
+        //completion call to fetch post from extension
+        Database.fetchUserWithUID(uid: uid) { (user) in
             self.fetchPostsWithUser(user: user)
-            
-        }) { (err) in
-            print("Failed to fetch user for posts:", err)
         }
         
     }
@@ -116,13 +103,31 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
 }
 
-//extension to refactor fetch user code
+//extension method to refactor fetch user code
 extension Database {
     
-    static func fetchUserWithUID(uid: String) {
-        print("Fetching user with uid:", uid)
+    //completion block used in production application shared in entire application
+    static func fetchUserWithUID(uid: String, completion: @escaping (User) -> ()) {
+        
+        //*LOGIC
+        
+        //fetch user via Firebase database call to show username
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        //convert snapshot into dictionary
+         guard let userDictionary = snapshot.value as? [String: Any] else { return }
+        
+        //turn into user
+         let user = User(uid: uid, dictionary: userDictionary)  //user object, fetch the correct user
+         
+            
+         completion(user)
+        
+        
+           }) { (err) in
+               print("Failed to fetch user for posts:", err)
+           }
     }
-    
     
 }
 
