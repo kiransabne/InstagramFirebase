@@ -31,7 +31,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         searchBar.anchor(top: navBar?.topAnchor, left: navBar?.leftAnchor, bottom: navBar?.bottomAnchor, right: navBar?.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         
         //create registration for cells
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(UserSearchCell.self, forCellWithReuseIdentifier: cellId)
     }
     
     //number of cells
@@ -39,11 +39,11 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         return 5
     }
     
-    
+    //create the cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+     
         
         return cell
     }
@@ -52,7 +52,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         
-        return CGSize(width: view.frame.width, height: 60)
+        return CGSize(width: view.frame.width, height: 66)
     }
     
     
