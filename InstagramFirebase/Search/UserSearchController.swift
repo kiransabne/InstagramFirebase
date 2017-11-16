@@ -19,6 +19,8 @@ class UserSearchController: UICollectionViewController {
         return sb
     }()
     
+    let cellId = "cellId" //safe string used to register cell class
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -27,7 +29,22 @@ class UserSearchController: UICollectionViewController {
         navigationController?.navigationBar.addSubview(searchBar)
         let navBar = navigationController?.navigationBar
         searchBar.anchor(top: navBar?.topAnchor, left: navBar?.leftAnchor, bottom: navBar?.bottomAnchor, right: navBar?.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        
+        //create registration for cells
+        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
     }
     
     
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        cell.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        
+        return cell
+    }
 }
