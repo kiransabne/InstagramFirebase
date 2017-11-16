@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserSearchController: UICollectionViewController {
+class UserSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     //create search bar
     let searchBar: UISearchBar = {
@@ -34,7 +34,7 @@ class UserSearchController: UICollectionViewController {
         collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
     }
     
-    
+    //number of cells
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
@@ -47,4 +47,24 @@ class UserSearchController: UICollectionViewController {
         
         return cell
     }
+    
+    //width and height of cells, conform to UICollectionViewDelegateFlowLayout first
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        
+        return CGSize(width: view.frame.width, height: 60)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
