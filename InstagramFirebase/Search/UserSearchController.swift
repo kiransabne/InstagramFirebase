@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase 
 
 class UserSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -35,7 +36,14 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         
         
         collectionView?.alwaysBounceVertical = true //bounce collection view up and down
+        fetchUsers()
     }
+    
+    //method to fetch users using Firebase database call
+    fileprivate func fetchUsers() {
+        print("Fetching users...")
+    }
+    
     
     //number of cells
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
