@@ -32,6 +32,9 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         
         //create registration for cells
         collectionView?.register(UserSearchCell.self, forCellWithReuseIdentifier: cellId)
+        
+        
+        collectionView?.alwaysBounceVertical = true //bounce collection view up and down
     }
     
     //number of cells

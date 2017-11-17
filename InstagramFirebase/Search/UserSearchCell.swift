@@ -23,16 +23,36 @@ class UserSearchCell: UICollectionViewCell {
         
     }()
     
+    //username label
+    let usernameLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "Username"
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        return label
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
         
         addSubview(profileImageView)
+        addSubview(usernameLabel)
+        
+        //profileImageView
         profileImageView.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
         profileImageView.layer.cornerRadius = 50 / 2 //round image view
         profileImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true //center on Y axis
+        
+        //usernameLabel
+        usernameLabel.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        //seperator view between search results
+        let seperatorView = UIView()
+        seperatorView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        addSubview(seperatorView)
+        seperatorView.anchor(top: nil, left: usernameLabel.leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
     }
     
     
@@ -40,3 +60,9 @@ class UserSearchCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+
+
+
+
+
