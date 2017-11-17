@@ -16,6 +16,11 @@ class UserSearchCell: UICollectionViewCell {
     var user: User? {
         didSet {
             usernameLabel.text = user?.username //set text to the username
+            
+            //render out user profile images in search list
+            guard let profileImageUrl = user?.profileImageUrl else { return }
+            
+            profileImageView.loadImage(urlString: profileImageUrl)
         }
     }
     
