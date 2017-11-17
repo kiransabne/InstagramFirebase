@@ -12,6 +12,14 @@ import UIKit
 
 class UserSearchCell: UICollectionViewCell {
     
+    //user object
+    var user: User? {
+        didSet {
+            usernameLabel.text = user?.username //set text to the username
+        }
+    }
+    
+    
     //profile image view, load image view using URL string
     let profileImageView: CustomImageView = {
         let iv = CustomImageView()

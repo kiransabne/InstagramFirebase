@@ -52,7 +52,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
             
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             
-            //iterate through all objects inside dictionary
+            //iterate through all objects inside dictionary to display list of users
             dictionaries.forEach({ (key, value) in
                 
                 //cast value into user dictionary
@@ -80,8 +80,9 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
     //create the cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-     
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserSearchCell
+       
+        cell.user = users[indexPath.item] //for every row set the user 
         
         return cell
     }
