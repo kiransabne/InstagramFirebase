@@ -39,6 +39,9 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         fetchUsers()
     }
     
+    
+    var users = [User]() //show fetched users from Firebase to controller
+    
     //method to fetch users using Firebase database call
     fileprivate func fetchUsers() {
         print("Fetching users...")
@@ -56,7 +59,9 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
                 guard let userDictionary = value as? [String: Any] else { return }
                 
                 let user = User(uid: key, dictionary: userDictionary)
-                print(user.uid, user.username)
+                self.users.append(user) //append user inside users array
+               
+                self.collectionView?.reloadData() //reload the controller with users
                 
                 
             })
@@ -69,7 +74,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
     
     //number of cells
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return users.count //return number of users from firebase
     }
     
     //create the cell
