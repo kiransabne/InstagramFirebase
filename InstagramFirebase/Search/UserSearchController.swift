@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase 
+import Firebase
 
 class UserSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -42,6 +42,28 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
     //method to fetch users using Firebase database call
     fileprivate func fetchUsers() {
         print("Fetching users...")
+        
+        //fetch users underneath node from Firebase, snapshot value is dictionary itself
+        let ref = Database.database().reference().child("users")
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+            
+            //iterate through all objects inside dictionary
+            dictionaries.forEach({ (key, value) in
+                
+                //cast value into user dictionary
+                guard let userDictionary = value as? [String: Any] else { return }
+                
+                let user = User(uid: key, dictionary: userDictionary)
+                print(user.uid, user.username)
+                
+                
+            })
+            
+        }) { (err) in
+            print("Failed to fetch users for search:", err)
+        }
     }
     
     
