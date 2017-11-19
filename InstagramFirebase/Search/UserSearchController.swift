@@ -61,6 +61,16 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         fetchUsers()
     }
     
+    //method when user picks another user from search results
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let user = filteredUsers[indexPath.item]
+        print(user.username)
+        
+    }
+    
+    
+    
     var filteredUsers = [User]() //master of all users
     var users = [User]() //show fetched users from Firebase to controller
     
