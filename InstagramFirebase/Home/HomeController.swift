@@ -96,7 +96,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         cell.post = posts[indexPath.item] //render home posts
         
          return cell
-       
         
         
     }

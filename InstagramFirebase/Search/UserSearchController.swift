@@ -9,16 +9,23 @@
 import UIKit
 import Firebase
 
-class UserSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class UserSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
     //create search bar
-    let searchBar: UISearchBar = {
+    lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
         sb.placeholder = "Enter username"
         sb.barTintColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = #colorLiteral(red: 0.9175471663, green: 0.9177045822, blue: 0.917537272, alpha: 1)
+        sb.delegate = self //UISearch bar delegate
         return sb
     }()
+    
+    //filter out search text
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        print(searchText) 
+    }
     
     let cellId = "cellId" //safe string used to register cell class
     

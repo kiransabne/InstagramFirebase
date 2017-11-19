@@ -36,6 +36,4 @@ class PhotoSelectorHeader: UICollectionViewCell {
     }
     
     
-    
-    
 }
