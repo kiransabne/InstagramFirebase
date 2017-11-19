@@ -77,6 +77,12 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
             //iterate through all objects inside dictionary to display list of users
             dictionaries.forEach({ (key, value) in
                 
+                //omit current username from the list
+                if key == Auth.auth().currentUser?.uid {
+                    print("Found myself, omit from list")
+                    return
+                }
+                
                 //cast value into user dictionary
                 guard let userDictionary = value as? [String: Any] else { return }
                 
