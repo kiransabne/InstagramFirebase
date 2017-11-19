@@ -58,6 +58,10 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         
         
         collectionView?.alwaysBounceVertical = true //bounce collection view up and down
+        
+        collectionView?.keyboardDismissMode = .onDrag //drag collectionview to dismiss the keyboard
+    
+        
         fetchUsers()
     }
     
@@ -73,6 +77,8 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         searchBar.isHidden = true //hide search bar
+        searchBar.resignFirstResponder() //hide keyboard once row is selected
+        
         
         let user = filteredUsers[indexPath.item]
         print(user.username)

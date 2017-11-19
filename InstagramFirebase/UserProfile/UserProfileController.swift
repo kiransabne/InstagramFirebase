@@ -19,8 +19,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         collectionView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
-        //show user profile using Firebase
-        navigationItem.title = Auth.auth().currentUser?.uid
+        
         
         //call user name instead of Firebase id characters
         fetchUser()
