@@ -24,7 +24,22 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
     //filter out search text
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        print(searchText) 
+        //if search text is empty bring all users inside of list instead of empty string(blank controller)
+        if searchText.isEmpty {
+            filteredUsers = users
+        } else {
+            filteredUsers = self.users.filter { (user) -> Bool in
+                return user.username.lowercased().contains(searchText.lowercased()) //case insensitive
+            }
+        }
+        
+        
+        //filter gives back array of elements back
+       filteredUsers =  self.users.filter { (user) -> Bool in
+            return user.username.contains(searchText)
+        }
+        
+        self.collectionView?.reloadData()
     }
     
     let cellId = "cellId" //safe string used to register cell class
@@ -46,7 +61,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         fetchUsers()
     }
     
-    
+    var filteredUsers = [User]() //master of all users
     var users = [User]() //show fetched users from Firebase to controller
     
     //method to fetch users using Firebase database call
@@ -67,11 +82,18 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
                 
                 let user = User(uid: key, dictionary: userDictionary)
                 self.users.append(user) //append user inside users array
-               
-                self.collectionView?.reloadData() //reload the controller with users
                 
                 
             })
+            
+            self.users.sort(by: { (u1, u2) -> Bool in
+                
+                return u1.username.compare(u2.username) == .orderedAscending //alphabet order doesn't work all the time
+            })
+            
+            self.filteredUsers = self.users //refresh filtered users
+            self.collectionView?.reloadData() //reload the controller with users
+
             
         }) { (err) in
             print("Failed to fetch users for search:", err)
@@ -81,7 +103,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
     
     //number of cells
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return users.count //return number of users from firebase
+        return filteredUsers.count //return number of users from firebase
     }
     
     //create the cell
@@ -89,7 +111,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserSearchCell
        
-        cell.user = users[indexPath.item] //for every row set the user 
+        cell.user = filteredUsers[indexPath.item] //for every row set the user
         
         return cell
     }

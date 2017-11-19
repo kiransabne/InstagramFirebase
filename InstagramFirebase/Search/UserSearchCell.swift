@@ -20,7 +20,7 @@ class UserSearchCell: UICollectionViewCell {
             //render out user profile images in search list
             guard let profileImageUrl = user?.profileImageUrl else { return }
             
-            profileImageView.loadImage(urlString: profileImageUrl)
+            profileImageView.loadImage(urlString: profileImageUrl) //render out user profile imageview 
         }
     }
     
