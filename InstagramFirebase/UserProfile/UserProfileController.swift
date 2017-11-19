@@ -14,15 +14,12 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     //cell id for collection view cells
     let cellId = "cellId"
     
+    var userId: String? //property
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
-        
-        
-        //call user name instead of Firebase id characters
-        fetchUser()
         
         //register collectionview with a header
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
@@ -32,7 +29,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         //gear icon to log out
         setupLogOutButton()
-        
+        //call user name instead of Firebase id characters
+        fetchUser()
         //fetchPosts()
         fetchOrderedPosts()
         
@@ -171,9 +169,12 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     //set user name instead of Firebase id characters using fileprivate(can only access this func within this class
     fileprivate func fetchUser() {
+        
+        let uid = userId ?? Auth.auth().currentUser?.uid ?? "" //return selected user profile when tapped in search results
+        
         //fetch username for Firebase users using guard let statement
         
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+       // guard let uid = Auth.auth().currentUser?.uid else { return }
         
         //completion block
         Database.fetchUserWithUID(uid: uid) { (user) in
