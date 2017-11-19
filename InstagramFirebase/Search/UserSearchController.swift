@@ -61,11 +61,25 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         fetchUsers()
     }
     
+    //reappear search bar
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchBar.isHidden = false
+    }
+    
+    
+    
     //method when user picks another user from search results
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        searchBar.isHidden = true //hide search bar
+        
         let user = filteredUsers[indexPath.item]
         print(user.username)
+        
+        //create user profile controller
+        let userProfileController = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(userProfileController, animated: true)
         
     }
     
