@@ -49,7 +49,7 @@ class HomePostCell: UICollectionViewCell {
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 4)])) //small gap in between label
         
         
-        let timeAgoDisplay = post.creationDate.description //modify to use creation date
+        let timeAgoDisplay = post.creationDate.timeAgoDisplay() //modify to use creation date
         attributedText.append(NSAttributedString(string: timeAgoDisplay, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))
         
         captionLabel.attributedText = attributedText
