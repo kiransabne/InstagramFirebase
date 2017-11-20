@@ -80,15 +80,21 @@ class UserProfileHeader: UICollectionViewCell {
         
         if editProfileFollowButton.titleLabel?.text == "Unfollow" {
             
-                //unfollow/follow logic using Firebase database call
+                //unfollow logic using Firebase database call
             Database.database().reference().child("following").child(currentLoggedInUserId).child(userId).removeValue(completionBlock: { (err, ref) in
                 
                 if let err = err {
                     print("Failed to unfollow user:", err)
                     return
                 }
-            
+                
                 print("Successfully unfollowed user:", self.user?.username ?? "")
+                
+                self.editProfileFollowButton.setTitle("Follow", for: .normal)
+                self.editProfileFollowButton.backgroundColor = #colorLiteral(red: 0.002071890514, green: 0.6539129615, blue: 0.9284040332, alpha: 1)
+                self.editProfileFollowButton.setTitleColor(.white, for: .normal)
+                self.editProfileFollowButton.layer.borderColor = #colorLiteral(red: 0.1766175032, green: 0.5504009724, blue: 0.7171214223, alpha: 1).cgColor
+                
             })
             
         } else {
