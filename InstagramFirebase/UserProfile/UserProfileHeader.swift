@@ -42,7 +42,7 @@ class UserProfileHeader: UICollectionViewCell {
             //edit profile logic
         } else {
             
-            editProfileButton.setTitle("Follow", for: .normal)
+            editProfileFollowButton.setTitle("Follow", for: .normal)
 
         }
         
@@ -131,16 +131,27 @@ class UserProfileHeader: UICollectionViewCell {
         return label
     }()
     
-    //edit profile button
-    let editProfileButton: UIButton = {
+    //edit profile button instantiate as lazy var
+    lazy var editProfileFollowButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Edit Profile", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.borderWidth = 1
+        button.layer.cornerRadius = 3
+        button.addTarget(self, action: #selector(handleEditProfileOrFollow), for: .touchUpInside)
+        
         return button
     }()
+    
+    
+    //func for when user taps on FollowOrEdit button
+    @objc func handleEditProfileOrFollow() {
+        print("Execute edit profile / follow / unfollow logic....")
+        
+    }
+    
     
     
     
@@ -166,8 +177,8 @@ class UserProfileHeader: UICollectionViewCell {
         
         
         setupUserStatsView()
-        addSubview(editProfileButton)
-        editProfileButton.anchor(top: postsLabel.bottomAnchor, left: postsLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 34)
+        addSubview(editProfileFollowButton)
+        editProfileFollowButton.anchor(top: postsLabel.bottomAnchor, left: postsLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 34)
         
     }
     
