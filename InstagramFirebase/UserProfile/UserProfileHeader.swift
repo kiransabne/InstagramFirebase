@@ -51,11 +51,7 @@ class UserProfileHeader: UICollectionViewCell {
                     self.editProfileFollowButton.setTitle("Unfollow", for: .normal)
                     
                 } else {
-                    
-                    self.editProfileFollowButton.setTitle("Follow", for: .normal)
-                    self.editProfileFollowButton.backgroundColor = #colorLiteral(red: 0.002071890514, green: 0.6539129615, blue: 0.9284040332, alpha: 1)
-                    self.editProfileFollowButton.setTitleColor(.white, for: .normal)
-                    self.editProfileFollowButton.layer.borderColor = #colorLiteral(red: 0.1766175032, green: 0.5504009724, blue: 0.7171214223, alpha: 1).cgColor
+                   self.setupFollowStyle() //refactored
                 }
              
             }, withCancel: { (err) in
@@ -89,12 +85,7 @@ class UserProfileHeader: UICollectionViewCell {
                 }
                 
                 print("Successfully unfollowed user:", self.user?.username ?? "")
-                
-                self.editProfileFollowButton.setTitle("Follow", for: .normal)
-                self.editProfileFollowButton.backgroundColor = #colorLiteral(red: 0.002071890514, green: 0.6539129615, blue: 0.9284040332, alpha: 1)
-                self.editProfileFollowButton.setTitleColor(.white, for: .normal)
-                self.editProfileFollowButton.layer.borderColor = #colorLiteral(red: 0.1766175032, green: 0.5504009724, blue: 0.7171214223, alpha: 1).cgColor
-                
+                self.setupFollowStyle() //refactored
             })
             
         } else {
@@ -121,6 +112,14 @@ class UserProfileHeader: UICollectionViewCell {
         
     }
     
+    //refactored to set follow/unfollow styling when tapped
+    fileprivate func setupFollowStyle() {
+        
+        self.editProfileFollowButton.setTitle("Follow", for: .normal)
+        self.editProfileFollowButton.backgroundColor = #colorLiteral(red: 0.002071890514, green: 0.6539129615, blue: 0.9284040332, alpha: 1)
+        self.editProfileFollowButton.setTitleColor(.white, for: .normal)
+        self.editProfileFollowButton.layer.borderColor = #colorLiteral(red: 0.1766175032, green: 0.5504009724, blue: 0.7171214223, alpha: 1).cgColor
+    }
     
     
     //adding userprofile view programmatically
