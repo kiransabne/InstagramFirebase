@@ -43,10 +43,37 @@ class UserProfileHeader: UICollectionViewCell {
         } else {
             
             editProfileFollowButton.setTitle("Follow", for: .normal)
-
+            editProfileFollowButton.backgroundColor = #colorLiteral(red: 0.002071890514, green: 0.6539129615, blue: 0.9284040332, alpha: 1)
+            editProfileFollowButton.setTitleColor(.white, for: .normal)
+            editProfileFollowButton.layer.borderColor = #colorLiteral(red: 0.1766175032, green: 0.5504009724, blue: 0.7171214223, alpha: 1).cgColor
         }
         
     }
+    
+    //func for when user taps on FollowOrEdit button
+    @objc func handleEditProfileOrFollow() {
+        print("Execute edit profile / follow / unfollow logic....")
+        
+        //tree for following node to follow a user and append a node in the tree
+        guard let currentLoggedInUserId = Auth.auth().currentUser?.uid else { return }
+        
+        guard let userId = user?.uid else { return }
+        
+        //introduce following node from Firebase
+        let ref = Database.database().reference().child("following").child(currentLoggedInUserId)
+        
+        let values = [userId: 1]
+        ref.updateChildValues(values) { (err, ref) in
+            if let err = err {
+                print("Failed to follow user:", err)
+                return
+            }
+            
+            print("Successfully followed user: ", self.user?.username ?? "")
+        }
+    }
+    
+    
     
     //adding userprofile view programmatically
     let profileImageView: CustomImageView = {
@@ -144,33 +171,6 @@ class UserProfileHeader: UICollectionViewCell {
         
         return button
     }()
-    
-    
-    //func for when user taps on FollowOrEdit button
-    @objc func handleEditProfileOrFollow() {
-        print("Execute edit profile / follow / unfollow logic....")
-        
-        //tree for following node to follow a user and append a node in the tree 
-        guard let currentLoggedInUserId = Auth.auth().currentUser?.uid else { return }
-        
-        guard let userId = user?.uid else { return }
-        
-        //introduce following node from Firebase
-        let ref = Database.database().reference().child("following").child(currentLoggedInUserId)
-        
-        let values = [userId: 1]
-        ref.updateChildValues(values) { (err, ref) in
-            if let err = err {
-                print("Failed to follow user:", err)
-                return
-            }
-            
-            print("Successfully followed user: ", self.user?.username ?? "")
-        }
-    }
-    
-    
-    
     
     
     //UIView objects subclass
