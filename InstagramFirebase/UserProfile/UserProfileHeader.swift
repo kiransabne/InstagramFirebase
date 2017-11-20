@@ -92,7 +92,7 @@ class UserProfileHeader: UICollectionViewCell {
             })
             
         } else {
-            //follow logic
+            //follow logic, execute styling properties
             //introduce following node from Firebase
             let ref = Database.database().reference().child("following").child(currentLoggedInUserId)
             
@@ -104,6 +104,11 @@ class UserProfileHeader: UICollectionViewCell {
                 }
                 
                 print("Successfully followed user: ", self.user?.username ?? "")
+                
+                //apply styling
+                self.editProfileFollowButton.setTitle("Unfollow", for: .normal)
+                self.editProfileFollowButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                self.editProfileFollowButton.setTitleColor(.black, for: .normal)
             }
             
         }
