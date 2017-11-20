@@ -150,7 +150,25 @@ class UserProfileHeader: UICollectionViewCell {
     @objc func handleEditProfileOrFollow() {
         print("Execute edit profile / follow / unfollow logic....")
         
+        //tree for following node to follow a user and append a node in the tree 
+        guard let currentLoggedInUserId = Auth.auth().currentUser?.uid else { return }
+        
+        guard let userId = user?.uid else { return }
+        
+        //introduce following node from Firebase
+        let ref = Database.database().reference().child("following").child(currentLoggedInUserId)
+        
+        let values = [userId: 1]
+        ref.updateChildValues(values) { (err, ref) in
+            if let err = err {
+                print("Failed to follow user:", err)
+                return
+            }
+            
+            print("Successfully followed user: ", self.user?.username ?? "")
+        }
     }
+    
     
     
     
