@@ -22,7 +22,30 @@ class UserProfileHeader: UICollectionViewCell {
             profileImageView.loadImage(urlString: profileImageUrl) //load profile image view and user's posts cells
             
             usernameLabel.text = user?.username
+            
+            setupEditFollowButton()
+            
         }
+    }
+    
+    //follow button
+    fileprivate func setupEditFollowButton() {
+    
+        //check to see if current user or not current user
+        guard let currentLoggedInUserId = Auth.auth().currentUser?.uid else { return }
+        
+        //check user's id
+        guard let userId = user?.uid else { return }
+        
+        //check the 2 variables above using if statement
+        if currentLoggedInUserId == userId {
+            //edit profile logic
+        } else {
+            
+            editProfileButton.setTitle("Follow", for: .normal)
+
+        }
+        
     }
     
     //adding userprofile view programmatically

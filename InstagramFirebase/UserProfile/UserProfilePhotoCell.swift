@@ -23,7 +23,6 @@ class UserProfilePhotoCell: UICollectionViewCell {
     //image view to load image in
     let photoImageView: CustomImageView = {
         let iv = CustomImageView()
-        iv.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv

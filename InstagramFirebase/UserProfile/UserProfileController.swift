@@ -31,16 +31,15 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         setupLogOutButton()
         //call user name instead of Firebase id characters
         fetchUser()
-        //fetchPosts()
-        fetchOrderedPosts()
         
+       // fetchOrderedPosts()  //fetchPosts()
     }
     
     var posts = [Post]()
     
     fileprivate func fetchOrderedPosts() {
         
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let uid = self.user?.uid else { return }
         
         //observe child added
         let ref = Database.database().reference().child("posts").child(uid)
@@ -170,7 +169,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     //set user name instead of Firebase id characters using fileprivate(can only access this func within this class
     fileprivate func fetchUser() {
         
-        let uid = userId ?? Auth.auth().currentUser?.uid ?? "" //return selected user profile when tapped in search results
+        let uid = userId ?? (Auth.auth().currentUser?.uid ?? "") //return selected user profile when tapped in search results
         
         //fetch username for Firebase users using guard let statement
         
@@ -184,6 +183,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             self.navigationItem.title = self.user?.username //set title of username
             
             self.collectionView?.reloadData()
+            
+            self.fetchOrderedPosts() //return posts after getting user
             
         }
         

@@ -28,7 +28,6 @@ class UserSearchCell: UICollectionViewCell {
     //profile image view, load image view using URL string
     let profileImageView: CustomImageView = {
         let iv = CustomImageView()
-        iv.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv
