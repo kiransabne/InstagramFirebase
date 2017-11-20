@@ -85,6 +85,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 self.posts.append(post)
             })
             
+            //sort post array in place, everytime get a post back from dictionary, sort it
+            self.posts.sort(by: { (p1, p2) -> Bool in
+                
+                return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+            })
+            
             self.collectionView?.reloadData()
             
         }) { (err) in

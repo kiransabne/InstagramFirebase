@@ -12,7 +12,7 @@ import UIKit
 
 class HomePostCell: UICollectionViewCell {
     
-    //var to render image to cell
+    //var to render image to cell, set up post variable
     var post: Post? {
         didSet {
             
@@ -49,7 +49,8 @@ class HomePostCell: UICollectionViewCell {
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 4)])) //small gap in between label
         
         
-        attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))
+        let timeAgoDisplay = post.creationDate.description //modify to use creation date
+        attributedText.append(NSAttributedString(string: timeAgoDisplay, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))
         
         captionLabel.attributedText = attributedText
         
