@@ -78,18 +78,36 @@ class UserProfileHeader: UICollectionViewCell {
         
         guard let userId = user?.uid else { return }
         
-        //introduce following node from Firebase
-        let ref = Database.database().reference().child("following").child(currentLoggedInUserId)
-        
-        let values = [userId: 1]
-        ref.updateChildValues(values) { (err, ref) in
-            if let err = err {
-                print("Failed to follow user:", err)
-                return
+        if editProfileFollowButton.titleLabel?.text == "Unfollow" {
+            
+                //unfollow/follow logic using Firebase database call
+            Database.database().reference().child("following").child(currentLoggedInUserId).child(userId).removeValue(completionBlock: { (err, ref) in
+                
+                if let err = err {
+                    print("Failed to unfollow user:", err)
+                    return
+                }
+            
+                print("Successfully unfollowed user:", self.user?.username ?? "")
+            })
+            
+        } else {
+            //follow logic
+            //introduce following node from Firebase
+            let ref = Database.database().reference().child("following").child(currentLoggedInUserId)
+            
+            let values = [userId: 1]
+            ref.updateChildValues(values) { (err, ref) in
+                if let err = err {
+                    print("Failed to follow user:", err)
+                    return
+                }
+                
+                print("Successfully followed user: ", self.user?.username ?? "")
             }
             
-            print("Successfully followed user: ", self.user?.username ?? "")
         }
+        
     }
     
     
