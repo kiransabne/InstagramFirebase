@@ -22,6 +22,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         setupNavigationItems() //call navbar
         fetchPosts()
+        
+        Database.fetchUserWithUID(uid: "0QVMVNvvtBbap5FwSTeo81L7fMv2") { (user) in
+            
+            self.fetchPostsWithUser(user: user)
+        }
     }
     
     var posts = [Post]() //array of posts
