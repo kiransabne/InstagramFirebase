@@ -20,12 +20,24 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         
+        let refreshControl = UIRefreshControl() //
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView?.refreshControl = refreshControl
+        
+        
         setupNavigationItems() //call navbar
         fetchPosts()
         
         fetchFollowingUserIds()
     
 }
+    
+    @objc func handleRefresh() {
+        print("Handling refresh...")
+        
+    }
+    
+    
     //fetch posts from users you are following
     fileprivate func fetchFollowingUserIds() {
         
