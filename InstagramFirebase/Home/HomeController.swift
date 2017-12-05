@@ -27,21 +27,22 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         
         setupNavigationItems() //call navbar
-        fetchPosts()
-        
-        fetchFollowingUserIds()
+        fetchAllPosts() //refactored
     
 }
     //method for pull down to refresh
     @objc func handleRefresh() {
         //need to fetch posts from following users
         print("Handling refresh...")
-        
-        fetchPosts()
-        fetchFollowingUserIds()
+        fetchAllPosts()
         
     }
     
+    //refactored for refresh control
+    fileprivate func fetchAllPosts() {
+        fetchPosts()
+        fetchFollowingUserIds()
+    }
     
     //fetch posts from users you are following
     fileprivate func fetchFollowingUserIds() {
@@ -71,7 +72,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
     }
     
-    //iOS 9 create instance if want to use refresh control
+    //iOS 9 create instance if want to use stop refresh control
     //let refreshControl = UIRefreshControl()
     
     
