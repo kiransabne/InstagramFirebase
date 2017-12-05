@@ -20,6 +20,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         
+        //pull down to refresh
         let refreshControl = UIRefreshControl() //
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         collectionView?.refreshControl = refreshControl
@@ -31,9 +32,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         fetchFollowingUserIds()
     
 }
-    
+    //method for pull down to refresh
     @objc func handleRefresh() {
+        //need to fetch posts from following users
         print("Handling refresh...")
+        
+        fetchPosts()
+        fetchFollowingUserIds()
         
     }
     
@@ -66,6 +71,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
     }
     
+    //iOS 9 create instance if want to use refresh control
+    //let refreshControl = UIRefreshControl()
+    
+    
     var posts = [Post]() //array of posts
     
     //access to user's posts
@@ -86,6 +95,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         //fetch post belonging to the right user
         let ref = Database.database().reference().child("posts").child(user.uid);ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            self.collectionView?.refreshControl?.endRefreshing() //stop spinner after refreshing
             
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             
