@@ -34,6 +34,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     @objc func handleRefresh() {
         //need to fetch posts from following users
         print("Handling refresh...")
+        
+        posts.removeAll() //fixes bug when unfollowing a person, doesn't show their posts
+        
         fetchAllPosts()
         
     }
