@@ -15,9 +15,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //set up Observer for catching notification from SharePhotoController.swift
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: SharePhotoController.updateFeedNotificationName, object: nil)
+    
+        
         collectionView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
-        
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         
         //pull down to refresh
@@ -30,6 +33,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         fetchAllPosts() //refactored
     
 }
+    
+    //method to handle update feed automatically after saving to Firebase
+    @objc func handleUpdateFeed() {
+        handleRefresh() //call handlerRefresh
+    }
+    
+    
     //method for pull down to refresh
     @objc func handleRefresh() {
         //need to fetch posts from following users

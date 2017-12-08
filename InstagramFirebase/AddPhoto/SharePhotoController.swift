@@ -100,6 +100,9 @@ class SharePhotoController: UIViewController {
         }
     }
     
+    static let updateFeedNotificationName = NSNotification.Name(rawValue: "UpdateFeed") //catch somewhere (in this case HomeController.swift)
+    
+    
     //save to Firebase database
     fileprivate func saveToDatabaseWithImageUrl(imageUrl: String) {
         
@@ -129,8 +132,7 @@ class SharePhotoController: UIViewController {
             self.dismiss(animated: true, completion: nil) //dismiss controller
             
             //automatic refresh of feed
-            let name = NSNotification.Name(rawValue: "UpdateFeed") //catch somewhere (in this case HomeController.swift)
-            NotificationCenter.default.post(name: name, object: nil) //post notification to entire system
+            NotificationCenter.default.post(name: SharePhotoController.updateFeedNotificationName, object: nil) //post notification to entire system
         }
     }
     

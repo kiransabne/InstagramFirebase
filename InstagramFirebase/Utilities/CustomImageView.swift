@@ -16,14 +16,16 @@ class CustomImageView: UIImageView {
     
     //fetch images
     func loadImage(urlString: String) {
-        print("Loading image...")
         
         lastURLUsedToLoadImage = urlString
         
+        self.image = nil
+        
         //check cache for the image
-        if let cacheImage = imageCache[urlString] {
+        if let cachedImage = imageCache[urlString] {
             
-           self.image = cacheImage
+           self.image = cachedImage
+           
             return
             
         }
