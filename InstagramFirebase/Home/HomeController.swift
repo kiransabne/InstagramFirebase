@@ -140,8 +140,16 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     //set up navbar
     func setupNavigationItems() {
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
+        
+        //bar button item on top left
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "camera3").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleCamera))
+        
     }
     
+    
+    @objc func handleCamera() {
+        print("Showing camera")
+    }
     
     //render customize size instead of default 50x50
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
