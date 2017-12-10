@@ -149,6 +149,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     @objc func handleCamera() {
         print("Showing camera")
+        
+        //present controller for camera
+        present(viewControllerToPresent: UIViewController, animated: Bool, completion: (() -> Void)?)
+        
+        
     }
     
     //render customize size instead of default 50x50
