@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class CameraController: UIViewController {
     
@@ -19,6 +20,28 @@ class CameraController: UIViewController {
     }
     
     fileprivate func setupCaptureSession() {
+        let captureSession = AVCaptureSession()
+        
+        //1. setup inputs
+        let captureDevice = AVCaptureDevice.default(for: .video)
+        
+        do {
+            let input = try AVCaptureDeviceInput(device: captureDevice!)
+            if captureSession.canAddInput(input) {
+                captureSession.addInput(input)
+                
+            }
+            
+        } catch let err {
+            print("Could not setup camera input:", err)
+        }
+        
+
+    
+        
+        //2. setup outputs
+        
+        //3.setup output preview
         
     }
     
