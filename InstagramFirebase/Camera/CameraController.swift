@@ -6,4 +6,20 @@
 //  Copyright © 2017 Christian Deciga. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class CameraController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //show camera and what the ouput is
+        setupCaptureSession()
+        
+    }
+    
+    fileprivate func setupCaptureSession() {
+        
+    }
+    
+}

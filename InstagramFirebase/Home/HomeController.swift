@@ -150,8 +150,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     @objc func handleCamera() {
         print("Showing camera")
         
+        //view controller to present created in CameraController.swift
+        let cameraController = CameraController()
+        
+        
         //present controller for camera
-        present(viewControllerToPresent: UIViewController, animated: Bool, completion: (() -> Void)?)
+        present(cameraController, animated: true, completion: nil)
         
         
     }
