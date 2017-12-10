@@ -141,7 +141,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func setupNavigationItems() {
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
         
-        //bar button item on top left
+        //bar button item on top left Camera Icon
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "camera3").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleCamera))
         
     }
