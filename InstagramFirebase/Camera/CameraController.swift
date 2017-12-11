@@ -23,7 +23,7 @@ class CameraController: UIViewController {
     //method for dismiss button
     @objc func handleDismiss() {
         dismiss(animated: true, completion: nil)
-        print("handling dismiss..")
+        
     }
     
     
@@ -46,20 +46,30 @@ class CameraController: UIViewController {
         
         //show camera and what the ouput is
         setupCaptureSession()
+        setupHUD()
+        
+    }
+    
+    //refactored code
+    fileprivate func setupHUD() {
         
         view.addSubview(capturePhotoButton)
         capturePhotoButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 24, paddingRight: 0, width: 80, height: 80)
         capturePhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true //center camera horizontally
+        view.addSubview(dismissButton)
+        dismissButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 50) //add constraints to be placed at top right of viewcontroller
+        
+        
     }
     
     fileprivate func setupCaptureSession() {
         let captureSession = AVCaptureSession()
         
         //1. setup inputs checking for device
-        let captureDevice = AVCaptureDevice.default(for: .video)
+        guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
         
         do {
-            let input = try AVCaptureDeviceInput(device: captureDevice!)
+            let input = try AVCaptureDeviceInput(device: captureDevice)
             if captureSession.canAddInput(input) {
                 captureSession.addInput(input)
                 
