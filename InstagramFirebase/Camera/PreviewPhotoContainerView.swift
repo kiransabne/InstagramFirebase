@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 //customize container view for camera after taking photo
 class PreviewPhotoContainerView: UIView {
@@ -40,7 +41,26 @@ class PreviewPhotoContainerView: UIView {
     
     //handle save function
     @objc func handleSave() {
+        //save image to device album use libraries in photos SDK
         print("handling save...")
+        
+        guard let previewImage = previewImageView.image else { return }
+        
+        //get reference to photo library
+        let library = PHPhotoLibrary.shared() //use this to save images to photo album
+        
+        library.performChanges({
+            
+            PHAssetChangeRequest.creationRequestForAsset(from: previewImage)
+            
+            
+        }) { (success, err) in
+            if let err = err {
+                print("Failed to save image to photo library:", err)
+                return
+            }
+            print("Successfully saved image to library")
+        }
         
     }
     
