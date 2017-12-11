@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CameraController: UIViewController {
+class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     
     //dismiss button
@@ -35,12 +35,6 @@ class CameraController: UIViewController {
         return button
     }()
     
-    //method when user taps capture photo
-    @objc func handleCapturePhoto() {
-        print("Capturing photo...")
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,9 +52,29 @@ class CameraController: UIViewController {
         capturePhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true //center camera horizontally
         view.addSubview(dismissButton)
         dismissButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 50) //add constraints to be placed at top right of viewcontroller
+    }
+    
+    
+    //method when user taps capture photo
+    @objc func handleCapturePhoto() {
+        //execute photo capturing code here
+        print("Capturing photo...")
+        
+        let settings = AVCapturePhotoSettings()
+        
+        output.capturePhoto(with: settings, delegate: self)
+    }
+    
+    //method from AVCapturePhotoCaptureDelegate protocol
+    func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+        
+        print("Finished processing photo sample buffer...")
         
         
     }
+    
+    
+    let output = AVCapturePhotoOutput()
     
     fileprivate func setupCaptureSession() {
         let captureSession = AVCaptureSession()
@@ -81,8 +95,9 @@ class CameraController: UIViewController {
         
         
         //2. setup outputs taking photos
-        let output = AVCapturePhotoOutput()
-        //check to see if can add output
+        
+        
+         //check to see if can add output
         if captureSession.canAddOutput(output) {
             captureSession.addOutput(output)
         }
