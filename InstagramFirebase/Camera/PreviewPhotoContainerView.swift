@@ -60,6 +60,49 @@ class PreviewPhotoContainerView: UIView {
                 return
             }
             print("Successfully saved image to library")
+            
+            //use DispatchQueue to prevent showing label slowing down , shows faster
+            DispatchQueue.main.async {
+                
+                //create animation label using frame much easier using frames after successfully saving image to library
+                let savedLabel = UILabel()
+                savedLabel.text = "Saved Successfully"
+                savedLabel.font = UIFont.boldSystemFont(ofSize: 18)
+                savedLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                savedLabel.numberOfLines = 0
+                savedLabel.backgroundColor = UIColor(white: 0, alpha: 0.3)
+                savedLabel.textAlignment = .center
+                savedLabel.frame = CGRect(x: 0, y: 0, width: 150, height: 80) //use frame to animate label
+                savedLabel.center = self.center
+                self.addSubview(savedLabel) //add label to entire container
+                
+                
+                savedLabel.layer.transform = CATransform3DMakeScale(0, 0, 0)
+                
+                //apply animation to savedLabel
+               
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+                    
+                    //animation
+                    savedLabel.layer.transform = CATransform3DMakeScale(1, 1, 1)
+                    
+                }, completion: { (completion) in
+                    //completed
+                    //execute another animation inside completion
+                    
+                    UIView.animate(withDuration: 0.5, delay: 0.75, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+                        
+                         savedLabel.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1)
+                         savedLabel.alpha = 0 //fade away animation
+                        
+                    }, completion: { (_) in
+                        
+                        savedLabel.removeFromSuperview()
+                       
+                    })
+                    
+                })
+            }
         }
         
     }
