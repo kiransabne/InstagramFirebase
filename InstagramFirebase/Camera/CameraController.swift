@@ -44,6 +44,12 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         
     }
     
+    //remove status bar
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    
     //refactored code
     fileprivate func setupHUD() {
         
