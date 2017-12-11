@@ -62,11 +62,26 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         
         let settings = AVCapturePhotoSettings()
         
+        guard let previewFormatType = settings.availablePreviewPhotoPixelFormatTypes.first else { return }
+        
+
+        settings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewFormatType]
+        
+        
         output.capturePhoto(with: settings, delegate: self)
     }
     
     //method from AVCapturePhotoCaptureDelegate protocol
     func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+        
+        let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: previewPhotoSampleBuffer!)
+        
+        let previewImage = UIImage(data: imageData!)
+        
+        //add preview image to main view controller
+        let previewImageView = UIImageView(image: previewImage)
+        view.addSubview(previewImageView)
+        previewImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         print("Finished processing photo sample buffer...")
         
