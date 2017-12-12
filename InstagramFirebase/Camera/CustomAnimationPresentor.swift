@@ -13,11 +13,20 @@ class CustomAnimationPresentor: NSObject, UIViewControllerAnimatedTransitioning 
     
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 05
+        return 0.5
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         //custom animation transiton code logic
+        
+        let containerView = transitionContext.containerView //reference call
+        guard let toView = transitionContext.view(forKey: .to) else { return }
+        
+        
+        containerView.addSubview(toView)
+        
+        transitionContext.completeTransition(true)
     }
+
 }
 

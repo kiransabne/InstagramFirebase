@@ -55,19 +55,6 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewC
         return customAnimationPresentor
     }
     
-    //custom animation for Camera
-    class CustomAnimationPresentor: NSObject, UIViewControllerAnimatedTransitioning {
-        
-        
-        func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-            return 05
-        }
-        
-        func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-            //custom animation transiton code logic
-        }
-    }
-    
     //remove status bar
     override var prefersStatusBarHidden: Bool {
         return true
