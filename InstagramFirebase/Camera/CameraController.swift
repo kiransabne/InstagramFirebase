@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
+class CameraController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewControllerTransitioningDelegate {
     
     
     //dismiss button
@@ -38,10 +38,34 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        transitioningDelegate = self
+        
         //show camera and what the ouput is
         setupCaptureSession()
         setupHUD()
         
+    }
+    
+    let customAnimationPresentor = CustomAnimationPresentor() //instance variable for custom animation of camera
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        //return UIViewController variable
+        
+        return customAnimationPresentor
+    }
+    
+    //custom animation for Camera
+    class CustomAnimationPresentor: NSObject, UIViewControllerAnimatedTransitioning {
+        
+        
+        func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+            return 05
+        }
+        
+        func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+            //custom animation transiton code logic
+        }
     }
     
     //remove status bar
