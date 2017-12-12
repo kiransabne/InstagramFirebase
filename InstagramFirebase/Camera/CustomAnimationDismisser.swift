@@ -1,5 +1,5 @@
 //
-//  CustomAnimationPresentor.swift
+//  CustomAnimationDismisser.swift
 //  InstagramFirebase
 //
 //  Created by everipedia_iMac on 12/12/17.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-//custom animation for Camera
-class CustomAnimationPresentor: NSObject, UIViewControllerAnimatedTransitioning {
+class CustomAnimationDismisser: NSObject, UIViewControllerAnimatedTransitioning {
     
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5
     }
+    
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         //custom animation transiton code logic
@@ -46,6 +46,6 @@ class CustomAnimationPresentor: NSObject, UIViewControllerAnimatedTransitioning 
             
         }
     }
-
+    
+    
 }
-

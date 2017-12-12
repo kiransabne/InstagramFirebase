@@ -55,6 +55,11 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewC
         return customAnimationPresentor
     }
     
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return customAnimationPresentor
+    }
+    
     //remove status bar
     override var prefersStatusBarHidden: Bool {
         return true
