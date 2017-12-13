@@ -8,9 +8,17 @@
 
 import UIKit
 
+//introduce protocol definition
+protocol HomePostCellDelegate {
+    func didTapComment()
+}
+
 //new cell renders out entire post
 
 class HomePostCell: UICollectionViewCell {
+    
+    
+    var delegate: HomePostCellDelegate? //optional starts of as nil
     
     //var to render image to cell, set up post variable
     var post: Post? {
