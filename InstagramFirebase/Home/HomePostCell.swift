@@ -98,13 +98,20 @@ class HomePostCell: UICollectionViewCell {
     
     
     //comment button
-    let commentButton: UIButton = {
+    lazy var commentButton: UIButton = {
         
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "comment").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
         return button
         
     }()
+    
+    //action method for comment button
+    @objc func handleComment() {
+        print("Trying to show comments...")
+    }
+    
     
     //send button
     let sendMessageButton: UIButton = {

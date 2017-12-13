@@ -46,7 +46,8 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewC
         
     }
     
-    let customAnimationPresentor = CustomAnimationPresentor() //instance variable for custom animation of camera
+    let customAnimationPresentor = CustomAnimationPresentor() //instance variable for custom animation of camera from custom class
+    let customAnimationDismisser = CustomAnimationDismisser() //from custom class
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
@@ -57,7 +58,7 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewC
     
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return customAnimationPresentor
+        return customAnimationDismisser 
     }
     
     //remove status bar
