@@ -8,7 +8,7 @@
 
 import UIKit
 
-//introduce protocol definition
+//introduce protocol definition custom delegation
 protocol HomePostCellDelegate {
     func didTapComment()
 }
@@ -118,6 +118,7 @@ class HomePostCell: UICollectionViewCell {
     //action method for comment button
     @objc func handleComment() {
         print("Trying to show comments...")
+        delegate?.didTapComment()
     }
     
     
