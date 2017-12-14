@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomePostCellDelegate {
+   
     
     let cellId = "cellId"
     
@@ -191,15 +192,17 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
     }
     
-    //method required for HomePostCellDelegate
-    func didTapComment() {
+    //specify which commment is pressed via custom delegation pattern
+    func didTapComment(post: Post) {
         print("Message coming from HomeController")
+        print(post.caption)
         
-        let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout()) //new variable for comments controller
+        let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout()) //new variable for comments
         
         //push to another controller
         navigationController?.pushViewController(commentsController, animated: true)
     }
+    
     
 }
 

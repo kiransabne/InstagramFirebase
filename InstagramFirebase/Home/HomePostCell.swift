@@ -10,7 +10,7 @@ import UIKit
 
 //introduce protocol definition custom delegation
 protocol HomePostCellDelegate {
-    func didTapComment()
+    func didTapComment(post: Post) //parameter tell user which posts they are clicking on
 }
 
 //new cell renders out entire post
@@ -117,8 +117,11 @@ class HomePostCell: UICollectionViewCell {
     
     //action method for comment button
     @objc func handleComment() {
+        
+        guard let post = post else { return }
+        
         print("Trying to show comments...")
-        delegate?.didTapComment()
+        delegate?.didTapComment(post: post)
     }
     
     
