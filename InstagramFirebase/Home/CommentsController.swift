@@ -17,12 +17,36 @@ class CommentsController: UICollectionViewController {
         //collectionviewcontroller
         collectionView?.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         
-        tabBarController?.tabBar.isHidden = true
+        
     }
+    
+    //when slide covers tab hidden
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //perform hiding of tab bar
+        tabBarController?.tabBar.isHidden = true
+        
+    }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        tabBarController?.tabBar.isHidden = false 
+        tabBarController?.tabBar.isHidden = false
     }
     
+    //accessory view property to show bottom portion of comments page
+    override var inputAccessoryView: UIView? {
+        get {
+            let containerView = UIView()
+            containerView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            containerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50) //specify frame
+            return containerView
+        }
+    }
+    
+    //show accessory view in controller
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
 }
