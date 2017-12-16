@@ -41,6 +41,13 @@ class CommentsController: UICollectionViewController {
             let containerView = UIView()
             containerView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             containerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50) //specify frame
+            
+            //text field, render it out inside bottom bar
+            let textField = UITextField()
+            textField.placeholder = "Enter Comment"
+            containerView.addSubview(textField)
+            textField.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+            
             return containerView
         }
     }
