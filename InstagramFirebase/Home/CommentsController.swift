@@ -38,7 +38,7 @@ class CommentsController: UICollectionViewController {
     }
     
     //textfield for comments
-    var containerView: UIView = {
+    lazy var containerView: UIView = {
         
         let containerView = UIView()
         containerView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -53,19 +53,26 @@ class CommentsController: UICollectionViewController {
         containerView.addSubview(submitButton)
         submitButton.anchor(top: containerView.topAnchor, left: nil, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 0)
         
-        //text field, render it out inside bottom bar
-        let textField = UITextField()
-        textField.placeholder = "Enter Comment"
-        containerView.addSubview(textField)
-        textField.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: submitButton.leftAnchor, paddingTop: 0, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        containerView.addSubview(self.commentTextField)
+        self.commentTextField.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: submitButton.leftAnchor, paddingTop: 0, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         return containerView
         
     }()
     
+    //enter user input comments
+    let commentTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Enter Comment"
+        return textField
+        
+    }()
+    
+    
     //action for submit button
     @objc func handleSubmit() {
-        print("Handling submit...")
+        print("Inserting comment:", commentTextField.text ?? "")
         
     }
     
