@@ -14,6 +14,8 @@ class CommentsController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Comments" //add title for nav bar
+        
         //collectionviewcontroller
         collectionView?.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         
