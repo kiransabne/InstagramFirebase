@@ -11,6 +11,7 @@ import Firebase
 
 class CommentsController: UICollectionViewController {
     
+    var post: Post?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,13 +74,16 @@ class CommentsController: UICollectionViewController {
     
     //action for submit button
     @objc func handleSubmit() {
+        
+        print("post id:", self.post?.id ?? "")
+        
         print("Inserting comment:", commentTextField.text ?? "")
         
-        let postId = "temporaryPostId"
-        let values = ["text": commentTextField.text ?? "" ]
+        let postId = self.post?.id ?? ""
+        let values = ["text": commentTextField.text ?? "", "creationDate": Date().timeIntervalSince1970] as [String : Any]
         
         //save user comment to Firebase, create 4th node in firebase where comments will live
-        Database.database().reference().child("comments").child(postId).updateChildValues(values) { (err, ref) in
+        Database.database().reference().child("comments").child(postId).childByAutoId().updateChildValues(values) { (err, ref) in
             
             if let err = err {
                 print("Failed to insert comment:", err)

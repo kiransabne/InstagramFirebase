@@ -118,7 +118,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String: Any] else { return }
                 
-                let post = Post(user: user, dictionary: dictionary)
+                var post = Post(user: user, dictionary: dictionary)
+                post.id = key //from Post.swift
                 
                 self.posts.append(post)
             })
@@ -198,6 +199,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         print(post.caption)
         
         let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout()) //new variable for comments
+        commentsController.post = post 
         
         //push to another controller
         navigationController?.pushViewController(commentsController, animated: true)
