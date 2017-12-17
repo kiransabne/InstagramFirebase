@@ -45,8 +45,10 @@ class CommentsController: UICollectionViewController {
             //submit button
             let submitButton = UIButton(type: .system)
             submitButton.setTitle("Submit", for: .normal)
+            submitButton.setTitleColor(.black, for: .normal)
+            submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
             containerView.addSubview(submitButton)
-            submitButton.anchor(top: containerView.topAnchor, left: nil, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 50, height: 0)
+            submitButton.anchor(top: containerView.topAnchor, left: nil, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 0)
             
             //text field, render it out inside bottom bar
             let textField = UITextField()
