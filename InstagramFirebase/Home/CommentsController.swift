@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CommentsController: UICollectionViewController {
     
@@ -73,6 +74,20 @@ class CommentsController: UICollectionViewController {
     //action for submit button
     @objc func handleSubmit() {
         print("Inserting comment:", commentTextField.text ?? "")
+        
+        let postId = "temporaryPostId"
+        let values = ["text": commentTextField.text ?? "" ]
+        
+        //save user comment to Firebase, create 4th node in firebase where comments will live
+        Database.database().reference().child("comments").child(postId).updateChildValues(values) { (err, ref) in
+            
+            if let err = err {
+                print("Failed to insert comment:", err)
+                return
+            }
+            
+            print("Successfully inserted comment.")
+        }
         
     }
     
