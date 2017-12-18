@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class CommentsController: UICollectionViewController {
+class CommentsController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var post: Post?
     
@@ -23,9 +23,29 @@ class CommentsController: UICollectionViewController {
         //collectionviewcontroller
         collectionView?.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         
+        collectionView?.contentInset = UIEdgeInsetsMake(0, 0, -50, 0)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, -50, 0)
+        
         //register cell from CommentsCell.swift
         collectionView?.register(CommentCell.self, forCellWithReuseIdentifier: cellId)
         
+        fetchComments()
+        
+    }
+    
+    fileprivate func fetchComments() {
+        
+        guard let postId = self.post?.id else { return }
+        
+        let ref = Database.database().reference().child("comments").child(postId)
+        ref.observe(.childAdded, with: { (snapshot) in
+            //completion block
+            print(snapshot.value)
+            
+            
+        }) { (err) in
+            print("Failed to observe comments")
+        }
     }
     
     
@@ -34,8 +54,18 @@ class CommentsController: UICollectionViewController {
         return 10
     }
     
-    //render out cells
+    //size of the cell
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 50)
+    }
     
+
+    //render out cells
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CommentCell
+        
+        return cell
+    }
     
     
     //when slide covers tab hidden
