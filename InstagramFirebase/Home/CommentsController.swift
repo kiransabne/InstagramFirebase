@@ -75,12 +75,14 @@ class CommentsController: UICollectionViewController {
     //action for submit button
     @objc func handleSubmit() {
         
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
         print("post id:", self.post?.id ?? "")
         
         print("Inserting comment:", commentTextField.text ?? "")
         
         let postId = self.post?.id ?? ""
-        let values = ["text": commentTextField.text ?? "", "creationDate": Date().timeIntervalSince1970] as [String : Any]
+        let values = ["text": commentTextField.text ?? "", "creationDate": Date().timeIntervalSince1970, "uid": uid] as [String : Any]
         
         //save user comment to Firebase, create 4th node in firebase where comments will live
         Database.database().reference().child("comments").child(postId).childByAutoId().updateChildValues(values) { (err, ref) in
@@ -94,6 +96,7 @@ class CommentsController: UICollectionViewController {
         }
         
     }
+    
     
     //accessory view property to show bottom portion of comments page
     override var inputAccessoryView: UIView? {
