@@ -13,6 +13,8 @@ class CommentsController: UICollectionViewController {
     
     var post: Post?
     
+    let cellId = "cellId" //cell identifier
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,8 +23,20 @@ class CommentsController: UICollectionViewController {
         //collectionviewcontroller
         collectionView?.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         
+        //register cell from CommentsCell.swift
+        collectionView?.register(CommentCell.self, forCellWithReuseIdentifier: cellId)
         
     }
+    
+    
+    //return number of sections
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    //render out cells
+    
+    
     
     //when slide covers tab hidden
     override func viewWillAppear(_ animated: Bool) {
