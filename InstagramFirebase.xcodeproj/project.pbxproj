@@ -18,7 +18,7 @@
 		894B25A81FDFE9360076D47F /* CustomAnimationPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B25A71FDFE9360076D47F /* CustomAnimationPresentor.swift */; };
 		894B25AA1FDFFC640076D47F /* CustomAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B25A91FDFFC640076D47F /* CustomAnimationDismisser.swift */; };
 		894B25AC1FE285E10076D47F /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B25AB1FE285E10076D47F /* CommentsController.swift */; };
-		894B25AE1FE7B6750076D47F /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B25AD1FE7B6720076D47F /* CommentsCell.swift */; };
+		894B25AE1FE7B6750076D47F /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B25AD1FE7B6720076D47F /* CommentCell.swift */; };
 		894B25B01FE7DB2B0076D47F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B25AF1FE7DB2B0076D47F /* Comment.swift */; };
 		895344791F97F6CC00EFAA9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895344781F97F6CC00EFAA9E /* AppDelegate.swift */; };
 		8953447B1F97F6CC00EFAA9E /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953447A1F97F6CC00EFAA9E /* SignUpController.swift */; };
@@ -53,7 +53,7 @@
 		894B25A71FDFE9360076D47F /* CustomAnimationPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresentor.swift; sourceTree = "<group>"; };
 		894B25A91FDFFC640076D47F /* CustomAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismisser.swift; sourceTree = "<group>"; };
 		894B25AB1FE285E10076D47F /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
-		894B25AD1FE7B6720076D47F /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
+		894B25AD1FE7B6720076D47F /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		894B25AF1FE7DB2B0076D47F /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		895344751F97F6CC00EFAA9E /* InstagramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		895344781F97F6CC00EFAA9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 				8997EC7A1FB53A8E0014B653 /* HomeController.swift */,
 				8997EC7C1FB6B20D0014B653 /* HomePostCell.swift */,
 				894B25AB1FE285E10076D47F /* CommentsController.swift */,
-				894B25AD1FE7B6720076D47F /* CommentsCell.swift */,
+				894B25AD1FE7B6720076D47F /* CommentCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -389,7 +389,7 @@
 				890E39431FBADD100024F3A7 /* User.swift in Sources */,
 				895344931F9D4DE100EFAA9E /* MainTabBarController.swift in Sources */,
 				895344981F9DF35000EFAA9E /* UserProfileHeader.swift in Sources */,
-				894B25AE1FE7B6750076D47F /* CommentsCell.swift in Sources */,
+				894B25AE1FE7B6750076D47F /* CommentCell.swift in Sources */,
 				894B25AA1FDFFC640076D47F /* CustomAnimationDismisser.swift in Sources */,
 				895344951F9D546900EFAA9E /* UserProfileController.swift in Sources */,
 				895344791F97F6CC00EFAA9E /* AppDelegate.swift in Sources */,

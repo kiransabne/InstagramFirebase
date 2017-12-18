@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+//comment model object
+struct Comment {
+    let text: String
+    let uid: String
+    
+    //initializer will give snapshot value, set up properties
+    init(dictionary: [String: Any]) {
+        self.text = dictionary["text"] as? String ?? ""
+        self.uid = dictionary["uid"] as? String ?? ""
+    }
+    
+}
