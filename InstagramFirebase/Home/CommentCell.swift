@@ -26,6 +26,15 @@ class CommentCell: UICollectionViewCell {
         return label
     }()
     
+    //
+    let profileImageView: CustomImageView = {
+        
+        let iv = CustomImageView()
+        iv.clipsToBounds = true
+        iv.contentMode = .scaleAspectFill 
+        return iv
+        
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
