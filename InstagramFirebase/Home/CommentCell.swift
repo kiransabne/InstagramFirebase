@@ -12,8 +12,13 @@ class CommentCell: UICollectionViewCell {
     
     var comment: Comment? {
         didSet {
-           
-            textLabel.text = comment?.text
+            guard let comment = comment else { return }
+            
+            guard let profileImageUrl = comment.user?.profileImageUrl else { return }
+            
+            textLabel.text = comment.text
+            
+            profileImageView.loadImage(urlString: profileImageUrl)
         }
     }
     
