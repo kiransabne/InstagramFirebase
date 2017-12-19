@@ -49,6 +49,7 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
             //inside here perform logic to get user profile image view
             guard let uid = dictionary["uid"] as? String else { return }
             
+            //retreive user using uid, once retreived, reload entire collectionview
             Database.fetchUserWithUID(uid: uid, completion: { (user) in
                 
                 //execute code that constructs the comment
