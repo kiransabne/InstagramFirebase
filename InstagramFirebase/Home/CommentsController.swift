@@ -29,6 +29,9 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
         //register cell from CommentsCell.swift
         collectionView?.register(CommentCell.self, forCellWithReuseIdentifier: cellId)
         
+        collectionView?.alwaysBounceVertical = true //bounciness of collectionview
+        collectionView?.keyboardDismissMode = .interactive //dismissal off keyboard
+        
         fetchComments()
         
     }
