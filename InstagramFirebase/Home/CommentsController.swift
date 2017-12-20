@@ -21,7 +21,7 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
         navigationItem.title = "Comments" //add title for nav bar
         
         //collectionviewcontroller
-        collectionView?.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        collectionView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         collectionView?.contentInset = UIEdgeInsetsMake(0, 0, -50, 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, -50, 0)
@@ -53,10 +53,8 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
             Database.fetchUserWithUID(uid: uid, completion: { (user) in
                 
                 //execute code that constructs the comment
-                var comment = Comment(dictionary: dictionary)
+                let comment = Comment(user: user, dictionary: dictionary)
                 //print(comment.text, comment.uid)
-                
-                comment.user = user //from Comment.swift
                 self.comments.append(comment) //return comments inside the var arrary from above
                 self.collectionView?.reloadData()
                 
@@ -78,9 +76,26 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
     
     //size of the cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 50)
+        
+        
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        let dummyCell = CommentCell(frame: frame)
+        dummyCell.comment = comments[indexPath.item]
+        dummyCell.layoutIfNeeded() //have operating system size cells for you
+        
+        let targetSize = CGSize(width: view.frame.width, height: 1000)
+        let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
+        
+        let height = max(40 + 8 + 8, estimatedSize.height) //comes from cell's imageView
+        return CGSize(width: view.frame.width, height: height)
+        
+        return CGSize(width: view.frame.width, height: estimatedSize.height)
     }
     
+    //remove gap that exists between each cell
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 
     //render out cells
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -126,6 +141,12 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
         
         containerView.addSubview(self.commentTextField)
         self.commentTextField.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: submitButton.leftAnchor, paddingTop: 0, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        //line between user's comments
+        let lineSeperatorView = UIView()
+        lineSeperatorView.backgroundColor = #colorLiteral(red: 0.9489166141, green: 0.9490789771, blue: 0.9489063621, alpha: 1)
+        containerView.addSubview(lineSeperatorView)
+        lineSeperatorView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
         
         return containerView
         

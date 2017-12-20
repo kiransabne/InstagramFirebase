@@ -11,13 +11,14 @@ import Foundation
 //comment model object
 struct Comment {
     
-    var user: User? 
+    let user: User
     
     let text: String
     let uid: String
     
     //initializer will give snapshot value, set up properties
-    init(dictionary: [String: Any]) {
+    init(user: User, dictionary: [String: Any]) {
+        self.user = user 
         self.text = dictionary["text"] as? String ?? ""
         self.uid = dictionary["uid"] as? String ?? ""
     }

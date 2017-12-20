@@ -14,28 +14,27 @@ class CommentCell: UICollectionViewCell {
         didSet {
             guard let comment = comment else { return }
             
-            guard let profileImageUrl = comment.user?.profileImageUrl else { return }
             
-            guard let username = comment.user?.username else { return }
             
-            let attributedText = NSMutableAttributedString(string: username, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]) //render username
+            let attributedText = NSMutableAttributedString(string: comment.user.username, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]) //render username
             
             attributedText.append(NSAttributedString(string: " " + comment.text, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])) //render comment
             
             //textLabel.text = comment.text
-            textLabel.attributedText = attributedText
+            textView.attributedText = attributedText
             
-            profileImageView.loadImage(urlString: profileImageUrl)
+            profileImageView.loadImage(urlString: comment.user.profileImageUrl)
         }
     }
     
     //view to render out comments
-    let textLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.numberOfLines = 0
-        label.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        return label
+    let textView: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 14)
+        //label.numberOfLines = 0
+        //label.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        textView.isScrollEnabled = false //disable scroll behavior of textView
+        return textView
     }()
     
     //profile image to add to collectionview cells
@@ -52,14 +51,14 @@ class CommentCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+        //backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
         
         addSubview(profileImageView)
         profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         profileImageView.layer.cornerRadius = 40 / 2 //make profile imaage rounded 
         
-        addSubview(textLabel)
-        textLabel.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0) //render inside of cell
+        addSubview(textView)
+        textView.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0) //render inside of cell
     }
     
     required init?(coder aDecoder: NSCoder) {
