@@ -101,8 +101,14 @@ class HomePostCell: UICollectionViewCell {
         
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
         return button
     }()
+    
+    //handleLike action method
+    @objc func handleLike() {
+        
+    }
     
     
     //comment button
@@ -114,6 +120,7 @@ class HomePostCell: UICollectionViewCell {
         return button
         
     }()
+    
     
     //action method for comment button
     @objc func handleComment() {
